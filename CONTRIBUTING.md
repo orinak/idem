@@ -58,3 +58,7 @@ place to reference GitHub issues that this commit _Closes_.
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or 
 two newlines. The rest of the commit message is then used for this.
+
+**Code Style**
+
+Follow _JavaScript Standard Style_
