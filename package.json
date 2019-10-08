@@ -1,0 +1,24 @@
+{
+  "name": "idem",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Client browser fingerprinting mechanism",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "keywords": [
+    "browser",
+    "fingerprint",
+    "identification"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "homepage": "https://github.com/pouk/idem#readme"
+}
