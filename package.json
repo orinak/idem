@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
   },
-  "homepage": "https://github.com/pouk/idem#readme"
+  "homepage": "https://github.com/pouk/idem#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "husky": "^3.0.8"
+  }
 }
