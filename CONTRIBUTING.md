@@ -14,6 +14,12 @@ cd idem
 npm install
 ```
 
+Run dev. server with hot reload
+
+```
+npm run dev
+```
+
 ### Making changes
 
 **Branching**
