@@ -62,3 +62,11 @@ two newlines. The rest of the commit message is then used for this.
 **Code Style**
 
 Follow _JavaScript Standard Style_
+
+**Tests**
+
+Run tests using AVA
+
+```
+npm run test
+```

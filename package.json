@@ -5,7 +5,8 @@
   "description": "Client browser fingerprinting mechanism",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc ava",
+    "test:watch": "ava -vw",
     "build": "webpack",
     "dev": "webpack-dev-server",
     "lint": "eslint --fix src/**/*.js",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "ava": "^2.4.0",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
@@ -38,6 +40,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.2",
+    "nyc": "^14.1.1",
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
