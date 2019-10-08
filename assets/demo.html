@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Browser Fingerprint Demo</title>
+
+    <style>
+      main {
+        padding: 100px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>
+      <strong>
+        Enable JavaScript for the demo to work.
+      </strong>
+    </noscript>
+
+    <main>
+      <var id="fingerprint-value"></var>
+    </main>
+
+    <script type="text/javascript">
+      function tryLoad () {
+
+        const { Fingerprint } = window.Idem || {}
+        const el = document.getElementById('fingerprint-value')
+
+        if (!Fingerprint) {
+          console.log('not loaded, try again')
+          return setTimeout(tryLoad, 400)
+        }
+
+        el.textContent = Fingerprint()
+      }
+
+      tryLoad()
+
+    </script>
+  </body>
+</html>
