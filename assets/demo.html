@@ -10,7 +10,6 @@
     <style>
       main {
         padding: 100px;
-        text-align: center;
       }
     </style>
   </head>
@@ -23,21 +22,43 @@
     </noscript>
 
     <main>
-      <var id="fingerprint-value"></var>
+      <header>
+        <var id="fingerprint-value"></var>
+      </header>
+
+      <div>
+        <dl id="fingerprint-details"></dl>
+      </div>
     </main>
 
     <script type="text/javascript">
       function tryLoad () {
-
-        const { Fingerprint } = window.Idem || {}
-        const el = document.getElementById('fingerprint-value')
-
-        if (!Fingerprint) {
+        if (!window.Idem) {
           console.log('not loaded, try again')
           return setTimeout(tryLoad, 400)
         }
 
-        el.textContent = Fingerprint()
+        const elValue = document.getElementById('fingerprint-value')
+        const elDetails = document.getElementById('fingerprint-details')
+
+        const fingerprint = Idem.render()
+
+        elValue.textContent = fingerprint.toString()
+
+
+        const htmlForPair = ([key, value]) => {
+          return '<br/>'
+            + '<dt id="probe-' + key + '">'
+              + key
+              + '<small> (' + (typeof value) + ') </small>'
+            + '</dt>'
+            + '<dd> <code>' + value + '</code> </dd>'
+        }
+
+        elDetails.innerHTML = Object
+          .entries(fingerprint.data)
+          .map(htmlForPair)
+          .join('\n')
       }
 
       tryLoad()
