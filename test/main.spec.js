@@ -1,17 +1,72 @@
 import test from 'ava'
 
-import { Fingerprint, render } from '../src'
+import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
+import getPort from 'get-port'
+import puppeteer from 'puppeteer'
 
-const WINDOW = {
-  navigator: { userAgent: 'Mozilla/5.0 ...' }
-}
+import webpackConfig from '../webpack.config.js'
 
-test.beforeEach(t => {
-  global.window = WINDOW
+let server
+let url
+let browser
+
+test.before(async () => {
+  // run server on available port
+  server = new WebpackDevServer(webpack(webpackConfig), { noInfo: true })
+
+  url = await new Promise((resolve, reject) => {
+    getPort()
+      .then(port => {
+        const host = 'localhost'
+
+        server.listen(port, host, err => {
+          return err
+            ? reject(err)
+            : resolve(`http://${host}:${port}/`)
+        })
+      })
+  })
+
+  // launch browser instance
+  browser = await puppeteer.launch({
+    // headless: false,
+    // slowMo: 250
+  })
 })
 
-test('render', t => {
-  const res = render()
+test.after(async () => {
+  browser.close()
+  server.close()
+})
 
-  t.true(res instanceof Fingerprint)
+test.beforeEach(async t => {
+  const page = await browser.newPage()
+
+  t.context = {
+    url,
+    page
+  }
+})
+
+test.afterEach.always(async t => {
+  const { page } = t.context
+
+  await page.close()
+})
+
+test('render', async t => {
+  const { url, page } = t.context
+
+  await page.goto(url)
+
+  const data = await page
+    .evaluate(() => {
+      const { render } = window.Idem
+      return render()
+    })
+    .then(res => res.data)
+
+  t.not(data.UserAgent, undefined)
+  t.not(data.TimezoneOffset, undefined)
 })
