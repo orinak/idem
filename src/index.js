@@ -1,5 +1,2 @@
-const Fingerprint = require('./Fingerprint')
-
-module.exports = {
-  Fingerprint
-}
+module.exports.Probes = require('./Probes')
+module.exports.Agent = require('./Agent')
