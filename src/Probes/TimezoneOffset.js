@@ -1,11 +1,17 @@
 /**
- * Get timezone offset
+ * Factory for probe to get timezone offset
  *
- * @returns {number}
+ * @returns {Function}
  */
 
-function main () {
-  return () => new Date().getTimezoneOffset()
+const factory = () => {
+  function TimezoneOffset () {
+    return new Date().getTimezoneOffset()
+  }
+
+  return TimezoneOffset
 }
 
-module.exports = main
+// expose factory
+
+module.exports = factory

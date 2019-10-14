@@ -50,29 +50,47 @@ const FONT_LIST = [
   'WenQuanYi Zen Hei Sharp'
 ]
 
-function main () {
-  const detector = new FontDetector()
-  const fonts = FONT_LIST
+/**
+ * Factory for probe to get (incomplete) list of available fonts
+ *
+ * @returns {Function}
+ */
 
-  return () => {
-    const callback = (resolve, reject) => {
-      detector.detect(fonts, (err, results) => {
-        if (err) return reject(err)
+const factory = (opts = {}) => {
+  const { fonts = FONT_LIST } = opts
 
-        const list = []
+  const compile = tbl => {
+    const list = []
 
-        for (let i = 0; i < results.length; i++) {
-          if (results[i]) {
-            list.push(fonts[i])
-          }
-        }
-
-        resolve(list)
-      })
+    for (let i = 0; i < tbl.length; i++) {
+      if (tbl[i]) {
+        list.push(fonts[i])
+      }
     }
 
-    return new Promise(callback)
+    return list
+  }
+
+  return function FontList () {
+    const detector = new FontDetector()
+
+    const detect = (resolve, reject) => {
+      const callback = (err, res) =>
+        err
+          ? reject(err)
+          : resolve(compile(res))
+
+      detector.detect(fonts, callback)
+    }
+
+    return new Promise(detect)
   }
 }
 
-module.exports = main
+// expose factory
+
+module.exports = factory
+
+// expose base font names
+
+module.exports.fonts = FONT_LIST

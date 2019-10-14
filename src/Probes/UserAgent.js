@@ -1,11 +1,17 @@
 /**
- * Get User Agent
+ * Factory for probe to get User Agent
  *
- * @returns {String}
+ * @returns {Function}
  */
 
-function main () {
-  return () => window.navigator.userAgent
+const factory = () => {
+  function UserAgent () {
+    return window.navigator.userAgent
+  }
+
+  return UserAgent
 }
 
-module.exports = main
+// expose factory
+
+module.exports = factory
