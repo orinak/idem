@@ -41,24 +41,27 @@
         const elValue = document.getElementById('fingerprint-value')
         const elDetails = document.getElementById('fingerprint-details')
 
-        const fingerprint = Idem.render()
+        const updateHTML = fingerprint => {
+          elValue.textContent = fingerprint.toString()
 
-        elValue.textContent = fingerprint.toString()
+          const htmlForPair = ([key, value]) => {
+            return '<br/>'
+              + '<dt id="probe-' + key + '">'
+                + key
+                + '<small> (' + (typeof value) + ') </small>'
+              + '</dt>'
+              + '<dd> <code>' + value + '</code> </dd>'
+          }
 
-
-        const htmlForPair = ([key, value]) => {
-          return '<br/>'
-            + '<dt id="probe-' + key + '">'
-              + key
-              + '<small> (' + (typeof value) + ') </small>'
-            + '</dt>'
-            + '<dd> <code>' + value + '</code> </dd>'
+          elDetails.innerHTML = Object
+            .entries(fingerprint.data)
+            .map(htmlForPair)
+            .join('\n')
         }
 
-        elDetails.innerHTML = Object
-          .entries(fingerprint.data)
-          .map(htmlForPair)
-          .join('\n')
+        Idem
+          .render()
+          .then(updateHTML)
       }
 
       tryLoad()

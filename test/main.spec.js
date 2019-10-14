@@ -67,6 +67,9 @@ test('render', async t => {
     })
     .then(res => res.data)
 
+  console.log(data)
+
   t.not(data.UserAgent, undefined)
   t.not(data.TimezoneOffset, undefined)
+  t.not(data.FontList, undefined)
 })

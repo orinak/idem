@@ -4,14 +4,13 @@ const probes = require('./probes')
 
 // generate fingerprint
 
-function render (ctx = window) {
-  const keys = Object.keys(probes)
+async function render () {
+  const data = {}
 
-  const data = keys.reduce((acc, key) => {
+  for (const key in probes) {
     const fn = probes[key]()
-    acc[key] = fn(ctx)
-    return acc
-  }, {})
+    data[key] = await fn()
+  }
 
   return Fingerprint(data)
 }
