@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { FontList } from '../src/probes'
+import { FontList } from '../src/Probes'
 
 test('signature', t => {
   t.is(typeof FontList, 'function')

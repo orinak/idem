@@ -55,18 +55,12 @@ test.afterEach.always(async t => {
   await page.close()
 })
 
-test('render', async t => {
+test('initial', async t => {
   const { url, page } = t.context
 
   const getFromPage = () => {
-    const { render } = window.Idem
-
-    const resolve = x => ({
-      id: x.toString(),
-      data: x.toJSON()
-    })
-
-    return render().then(resolve)
+    const { Agent } = window.Idem
+    return Agent().detect()
   }
 
   await page.goto(url)

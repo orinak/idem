@@ -5,9 +5,15 @@ Client browser fingerprinting mechanism.
 ### Usage
 
 ```js
-const { render } = require('idem')
+const { Agent } = require('idem')
 
-const fingerprint = render()
+Agent()
+  .detect()
+  .then(res => {
+    console.log('id:', res.id)
+    console.log('data:', res.data)
+  })
 
-console.log(`Fingerprint: ${fingerprint}`) // > Fingerprint: eyJVc2V...
+// > id: "29d99074"
+// > data: { FontList: ["DejaVu Sans", ...], ... }
 ```

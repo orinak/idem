@@ -12,7 +12,7 @@ const BUILD_MODE = 'development'
 module.exports = {
   mode: BUILD_MODE,
   entry: {
-    module: SRC_PATH
+    Idem: `${SRC_PATH}/index.js`
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   output: {
-    filename: 'main.js',
+    filename: 'Idem.js',
     path: DIST_DIR,
     library: 'Idem'
   },

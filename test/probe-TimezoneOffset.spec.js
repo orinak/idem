@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { TimezoneOffset } from '../src/probes'
+import { TimezoneOffset } from '../src/Probes'
 
 test('signature', t => {
   t.is(typeof TimezoneOffset, 'function')

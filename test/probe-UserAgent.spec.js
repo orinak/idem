@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { UserAgent } from '../src/probes'
+import { UserAgent } from '../src/Probes'
 
 const WINDOW = {
   navigator: { userAgent: 'Mozilla/5.0 ...' }

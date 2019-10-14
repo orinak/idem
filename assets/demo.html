@@ -32,17 +32,20 @@
     </main>
 
     <script type="text/javascript">
+
       function tryLoad () {
         if (!window.Idem) {
           console.log('not loaded, try again')
           return setTimeout(tryLoad, 400)
         }
 
+        const { Agent } = Idem
+
         const elValue = document.getElementById('fingerprint-value')
         const elDetails = document.getElementById('fingerprint-details')
 
-        const updateHTML = fingerprint => {
-          elValue.textContent = fingerprint.toString()
+        const updateHTML = res => {
+          elValue.textContent = res.id
 
           const htmlForPair = ([key, value]) => {
             return '<br/>'
@@ -54,13 +57,13 @@
           }
 
           elDetails.innerHTML = Object
-            .entries(fingerprint.data)
+            .entries(res.data)
             .map(htmlForPair)
             .join('\n')
         }
 
-        Idem
-          .render()
+        Agent()
+          .detect()
           .then(updateHTML)
       }
 
