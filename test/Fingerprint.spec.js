@@ -2,12 +2,6 @@ import test from 'ava'
 
 import Fingerprint from '../src/Fingerprint'
 
-test.beforeEach(t => {
-  global.window = {
-    navigator: { userAgent: 'Mozilla/5.0 ...' }
-  }
-})
-
 test('constructor', t => {
   t.is(typeof Fingerprint, 'function')
 
@@ -16,10 +10,12 @@ test('constructor', t => {
 })
 
 test('toString', t => {
-  const fx = new Fingerprint()
+  const fx = new Fingerprint({ key: 'value' })
 
   t.is(typeof fx.toString, 'function')
   t.is(typeof fx.toString(), 'string')
+
+  t.is(fx.toString().length, 8)
 })
 
 test('toJSON', t => {

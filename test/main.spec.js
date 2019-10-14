@@ -58,16 +58,24 @@ test.afterEach.always(async t => {
 test('render', async t => {
   const { url, page } = t.context
 
+  const getFromPage = () => {
+    const { render } = window.Idem
+
+    const resolve = x => ({
+      id: x.toString(),
+      data: x.toJSON()
+    })
+
+    return render().then(resolve)
+  }
+
   await page.goto(url)
 
-  const data = await page
-    .evaluate(() => {
-      const { render } = window.Idem
-      return render()
-    })
-    .then(res => res.data)
+  const { id, data } = await page.evaluate(getFromPage)
 
-  console.log(data)
+  //
+
+  t.is(typeof id, 'string')
 
   t.not(data.UserAgent, undefined)
   t.not(data.TimezoneOffset, undefined)
