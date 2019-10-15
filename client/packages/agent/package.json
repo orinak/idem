@@ -1,0 +1,25 @@
+{
+  "name": "@pouk/idem-client-agent",
+  "version": "0.0.1",
+  "description": "Agent",
+  "keywords": [
+    "idem",
+    "client"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/agent#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "dependencies": {
+    "@pouk/idem-client-probes": "*"
+  }
+}

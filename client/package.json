@@ -1,0 +1,24 @@
+{
+  "name": "@pouk/idem-client",
+  "version": "0.0.1",
+  "description": "Client",
+  "keywords": [
+    "idem",
+    "client"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/client#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "dependencies": {
+    "@pouk/idem-client-agent": "*"
+  }
+}

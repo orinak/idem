@@ -1,0 +1,27 @@
+{
+  "name": "@pouk/idem-client-probes",
+  "version": "0.0.1",
+  "description": "Probes collection",
+  "keywords": [
+    "idem",
+    "client"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probes#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "dependencies": {
+    "@pouk/idem-client-probe-user-agent": "*",
+    "@pouk/idem-client-probe-timezone-offset": "*",
+    "@pouk/idem-client-probe-system-fonts": "*"
+  }
+}

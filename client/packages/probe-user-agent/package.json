@@ -1,0 +1,23 @@
+{
+  "name": "@pouk/idem-client-probe-user-agent",
+  "version": "0.0.1",
+  "description": "Probe for User Agent",
+  "keywords": [
+    "idem",
+    "client",
+    "user-agent"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probe-user-agent#readme",
+  "license": "MIT",
+  "main": "src/UserAgent.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  }
+}
