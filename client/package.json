@@ -13,13 +13,13 @@
     "url": "git+https://github.com/pouk/idem.git"
   },
   "scripts": {
-    "test": "ava -v",
-    "test:coverage": "nyc ava",
+    "test": "ava",
+    "test:coverage": "nyc ava -v",
     "test:watch": "ava -vw",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
     "lint": "eslint --fix src/**/*.js",
-    "lint:staged": "lint-staged"
+    "lint:staged": "lint-staged",
+    "build": "webpack",
+    "dev": "webpack-dev-server"
   },
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
