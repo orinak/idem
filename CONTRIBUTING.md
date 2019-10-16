@@ -12,12 +12,41 @@ cd idem
 
 // install dependencies
 npm install
+
+// install lerna globally
+npm install -g lerna
+
+// bootstrap w/ internal dependencies
+lerna bootstrap
 ```
 
-Run dev. server with hot reload
+### Project structure
+
+High level directory structure
 
 ```
-npm run dev
+├── CHANGELOG.md
+├── client
+│   ├── assets
+│   │   └── demo.html
+│   ├── ava.config.js
+│   ├── dist
+│   ├── index.js
+│   ├── package.json
+│   ├── packages
+│   │   ├── agent
+│   │   │   ├── index.js
+│   │   │   ├── package.json
+│   │   │   ├── src
+│   │   │   └── test
+│   │   └── ...
+│   ├── src
+│   ├── test
+│   └── webpack.config.js
+├── config
+├── common
+└── server
+    └── packages
 ```
 
 ### Making changes
@@ -52,6 +81,14 @@ Type must be one of the following:
 - `perf`
 - `style`
 - `revert`
+
+Optional scope may be:
+
+- `client`
+- `server`
+- `config`
+- `common`
+- ...
 
 The footer should contain any information about **Breaking Changes** and is also the 
 place to reference GitHub issues that this commit _Closes_.
