@@ -1,0 +1,24 @@
+{
+  "name": "@pouk/idem-config-webpack-test",
+  "version": "0.0.1",
+  "description": "Webpack config for tests",
+  "keywords": [
+    "idem",
+    "config",
+    "webpack",
+    "test"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/config/webpack-test#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "main": "./index.js",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0"
+  }
+}
