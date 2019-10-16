@@ -73,5 +73,5 @@ test('initial', async t => {
 
   t.not(data.UserAgent, undefined)
   t.not(data.TimezoneOffset, undefined)
-  t.not(data.FontList, undefined)
+  t.not(data.SystemFonts, undefined)
 })

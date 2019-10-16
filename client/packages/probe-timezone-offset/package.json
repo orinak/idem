@@ -15,7 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/pouk/idem.git"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "ava",
+    "test:converage": "nyc ava -v"
+  },
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
   }

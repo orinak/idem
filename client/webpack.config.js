@@ -3,7 +3,7 @@ const Path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const SRC_PATH = Path.resolve(__dirname, 'src')
+const SRC_PATH = Path.resolve(__dirname, 'index.js')
 const DIST_DIR = Path.resolve(__dirname, 'dist')
 const DEMO_TPL = Path.resolve(__dirname, 'assets/demo.html')
 
@@ -11,9 +11,7 @@ const BUILD_MODE = 'development'
 
 module.exports = {
   mode: BUILD_MODE,
-  entry: {
-    Idem: `${SRC_PATH}/index.js`
-  },
+  entry: SRC_PATH,
   devtool: 'inline-source-map',
   devServer: {
     contentBase: DIST_DIR,
