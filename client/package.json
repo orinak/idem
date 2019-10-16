@@ -46,7 +46,6 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "@pouk/idem-client-agent": "*",
-    "font-detect": "^1.0.0"
+    "@pouk/idem-client-agent": "*"
   }
 }
