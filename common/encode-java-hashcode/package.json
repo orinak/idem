@@ -1,12 +1,12 @@
 {
-  "name": "@pouk/idem-client-agent",
+  "name": "@pouk/idem-common-encode-java-hashcode",
   "version": "0.0.1",
-  "description": "Agent",
+  "description": "A JavaScript implementation of Java's hashCode method",
   "keywords": [
     "idem",
-    "client"
+    "encode"
   ],
-  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/agent#readme",
+  "homepage": "https://github.com/pouk/idem/tree/master/common/encode-java-hashcode#readme",
   "license": "MIT",
   "main": "index.js",
   "repository": {
@@ -34,9 +34,5 @@
     "eslint-plugin-standard": "^4.0.1",
     "lint-staged": "^9.4.2",
     "nyc": "^14.1.1"
-  },
-  "dependencies": {
-    "@pouk/idem-client-probes": "*",
-    "@pouk/idem-common-encode-java-hashcode": "*"
   }
 }

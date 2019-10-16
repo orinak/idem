@@ -1,7 +1,7 @@
 const Probes = require('@pouk/idem-client-probes')
+const encode = require('@pouk/idem-common-encode-java-hashcode')
 
 const serialize = require('./serialize')
-const encode = require('./encode')
 
 function Agent () {
   // use w/o `new` keyword
