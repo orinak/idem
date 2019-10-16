@@ -1,0 +1,22 @@
+{
+  "name": "@pouk/idem-config-ava-base",
+  "version": "0.0.1",
+  "description": "Base AVA config",
+  "keywords": [
+    "idem",
+    "config",
+    "ava",
+    "test"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/config/ava-base#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "license": "MIT",
+  "main": "./ava.config.js"
+}

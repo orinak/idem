@@ -1,12 +1,3 @@
-export default {
-  files: [
-    'test/**/*.spec.js'
-  ],
-  helpers: [
-    '**/helpers/**/*'
-  ],
-  sources: [
-    'src/**/*',
-    'packages/*/src/**/*'
-  ]
-}
+import baseConfig from '@pouk/idem-config-ava-base'
+
+export default baseConfig

@@ -27,6 +27,7 @@
     "url": "https://github.com/pouk/idem/issues"
   },
   "devDependencies": {
+    "@pouk/idem-config-ava-base": "*",
     "ava": "^2.4.0",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.5.1",
