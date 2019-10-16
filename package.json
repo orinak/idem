@@ -5,12 +5,11 @@
   "description": "Client browser fingerprinting mechanism",
   "main": "index.js",
   "scripts": {
-    "test": "nyc ava",
-    "test:watch": "ava -vw",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
-    "lint": "eslint --fix src/**/*.js",
-    "lint:staged": "lint-staged"
+    "test": "lerna run test --concurrency 1 --stream",
+    "test:coverage": "lerna run test:coverage --concurrency 1 --stream",
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "lint:staged": "lerna run lint:staged"
   },
   "repository": {
     "type": "git",
@@ -44,11 +43,8 @@
     "lint-staged": "^9.4.2",
     "nyc": "^14.1.1",
     "puppeteer": "^1.20.0",
-    "webpack-dev-server": "^3.8.2"
-  },
-  "dependencies": {
-    "font-detect": "^1.0.0",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   }
 }
