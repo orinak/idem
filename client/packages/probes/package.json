@@ -1,0 +1,43 @@
+{
+  "name": "@pouk/idem-client-probes",
+  "version": "0.0.1",
+  "description": "Probes collection",
+  "keywords": [
+    "idem",
+    "client"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probes#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "scripts": {
+    "test": "ava",
+    "test:coverage": "nyc ava -v",
+    "lint": "eslint --fix index.js",
+    "lint:staged": "lint-staged",
+    "precommit": "npm run lint:staged",
+    "prepush": "npm run lint && npm test"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "eslint": "^6.5.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "lint-staged": "^9.4.2",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@pouk/idem-client-probe-user-agent": "*",
+    "@pouk/idem-client-probe-timezone-offset": "*",
+    "@pouk/idem-client-probe-system-fonts": "*"
+  }
+}

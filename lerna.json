@@ -1,0 +1,22 @@
+{
+  "packages": [
+    "client/",
+    "client/packages/*",
+    "server/",
+    "server/packages/*",
+    "common/*",
+    "config/*"
+  ],
+  "version": "0.0.1",
+  "command": {
+    "bootstrap": {
+      "hoist": true
+    },
+    "version": {
+      "message": "chore(release): %s",
+      "conventionalCommits": true,
+      "allowBranch": "master",
+      "push": false
+    }
+  }
+}

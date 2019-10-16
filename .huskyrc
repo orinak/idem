@@ -1,7 +1,7 @@
 {
   "hooks": {
-    "pre-commit": "npm run lint:staged",
+    "pre-commit": "npm run precommit",
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-    "pre-push": "npm run lint && npm test"
+    "pre-push": "npm run prepush"
   }
 }
