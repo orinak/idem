@@ -9,7 +9,10 @@
     "test:coverage": "lerna run test:coverage --concurrency 1 --stream",
     "build": "lerna run build",
     "lint": "lerna run lint",
-    "lint:staged": "lerna run lint:staged"
+    "bootstrap": "lerna bootstrap",
+    "postinstall": "npm run bootstrap",
+    "prepush": "lerna run prepush --concurrency 1 --stream",
+    "precommit": "lerna run precommit --concurrency 1 --stream"
   },
   "repository": {
     "type": "git",

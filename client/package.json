@@ -19,7 +19,9 @@
     "lint": "eslint --fix src/**/*.js",
     "lint:staged": "lint-staged",
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "precommit": "npm run lint:staged",
+    "prepush": "npm run lint && npm test"
   },
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"

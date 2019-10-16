@@ -17,7 +17,9 @@
     "test": "ava",
     "test:coverage": "nyc ava -v",
     "lint": "eslint --fix index.js",
-    "lint:staged": "lint-staged"
+    "lint:staged": "lint-staged",
+    "precommit": "npm run lint:staged",
+    "prepush": "npm run lint && npm test"
   },
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
