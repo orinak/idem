@@ -1,69 +1,51 @@
 import test from 'ava'
 
-import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
-import getPort from 'get-port'
 import puppeteer from 'puppeteer'
 
-import webpackConfig from '../webpack.config.js'
+import serveDev from '@pouk/idem-config-webpack-test/src/helpers/serve'
 
-let server
-let url
-let browser
+const BROWSER_OPTIONS = {
+  // headless: false,
+  // slowMo: 250
+}
 
-test.before(async () => {
-  // run server on available port
-  server = new WebpackDevServer(webpack(webpackConfig), { noInfo: true })
+test.before(async t => {
+  const { host, server } = await serveDev()
+  const browser = await puppeteer.launch(BROWSER_OPTIONS)
 
-  url = await new Promise((resolve, reject) => {
-    getPort()
-      .then(port => {
-        const host = 'localhost'
-
-        server.listen(port, host, err => {
-          return err
-            ? reject(err)
-            : resolve(`http://${host}:${port}/`)
-        })
-      })
-  })
-
-  // launch browser instance
-  browser = await puppeteer.launch({
-    // headless: false,
-    // slowMo: 250
-  })
+  t.context = {
+    host,
+    server,
+    browser
+  }
 })
 
-test.after(async () => {
-  browser.close()
-  server.close()
+test.after.always(async t => {
+  const { browser, server } = t.context
+
+  await browser.close()
+  await server.close()
 })
 
 test.beforeEach(async t => {
-  const page = await browser.newPage()
-
-  t.context = {
-    url,
-    page
-  }
+  const { browser } = t.context
+  t.context.page = await browser.newPage()
 })
 
 test.afterEach.always(async t => {
   const { page } = t.context
-
   await page.close()
 })
 
 test('initial', async t => {
-  const { url, page } = t.context
+  const { host, page } = t.context
 
   const getFromPage = () => {
-    const { Agent } = window.Idem
+    const { Agent } = window.IdemTestLibrary
     return Agent().detect()
   }
 
-  await page.goto(url)
+  await page.goto(host)
 
   const { id, data } = await page.evaluate(getFromPage)
 

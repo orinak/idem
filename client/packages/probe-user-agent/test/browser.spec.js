@@ -2,15 +2,9 @@ import test from 'ava'
 
 import puppeteer from 'puppeteer'
 
-import getPort from 'get-port'
-
-import { serve } from './helpers/webpack-dev-server'
+import serveDev from '@pouk/idem-config-webpack-test/src/helpers/serve'
 
 // settings
-
-const SERVER_OPTIONS = {
-  noInfo: true
-}
 
 const BROWSER_OPTIONS = {
   // headless: false,
@@ -20,14 +14,11 @@ const BROWSER_OPTIONS = {
 // hooks
 
 test.before(async t => {
-  const host = 'localhost'
-  const port = await getPort()
-
-  const server = await serve(port, host, SERVER_OPTIONS)
+  const { host, server } = await serveDev()
   const browser = await puppeteer.launch(BROWSER_OPTIONS)
 
   t.context = {
-    address: `http://${host}:${port}`,
+    host,
     server,
     browser
   }
@@ -53,12 +44,12 @@ test.afterEach.always(async t => {
 // tests
 
 test('results', async t => {
-  const { address, page } = t.context
+  const { host, page } = t.context
 
   const USER_AGENT = `Mozilla/5.0 Test ${Date.now()}`
 
   await page.setUserAgent(USER_AGENT)
-  await page.goto(address)
+  await page.goto(host)
 
   const getUserAgent = () => {
     const factory = window.IdemTestLibrary
