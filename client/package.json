@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@pouk/idem-config-ava-base": "*",
+    "@pouk/idem-config-webpack-test": "*",
     "ava": "^2.4.0",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.5.1",

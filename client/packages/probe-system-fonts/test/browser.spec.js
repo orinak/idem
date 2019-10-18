@@ -4,10 +4,14 @@ import puppeteer from 'puppeteer'
 
 import serveDev from '@pouk/idem-config-webpack-test/src/helpers/serve'
 
+// settings
+
 const BROWSER_OPTIONS = {
   // headless: false,
   // slowMo: 250
 }
+
+// hooks
 
 test.before(async t => {
   const { host, server } = await serveDev()
@@ -37,23 +41,21 @@ test.afterEach.always(async t => {
   await page.close()
 })
 
-test('initial', async t => {
-  const { host, page } = t.context
+// tests
 
-  const getFromPage = () => {
-    const { Agent } = window.IdemTestLibrary
-    return Agent().detect()
-  }
+test('results', async t => {
+  const { host, page } = t.context
 
   await page.goto(host)
 
-  const { id, data } = await page.evaluate(getFromPage)
+  const getFontList = () => {
+    const factory = window.IdemTestLibrary
+    const probe = factory()
 
-  //
+    return probe()
+  }
 
-  t.is(typeof id, 'string')
+  const results = await page.evaluate(getFontList)
 
-  t.not(data.UserAgent, undefined)
-  t.not(data.TimezoneOffset, undefined)
-  t.not(data.SystemFonts, undefined)
+  t.true(Array.isArray(results))
 })

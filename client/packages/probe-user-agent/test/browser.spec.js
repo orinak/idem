@@ -4,10 +4,14 @@ import puppeteer from 'puppeteer'
 
 import serveDev from '@pouk/idem-config-webpack-test/src/helpers/serve'
 
+// settings
+
 const BROWSER_OPTIONS = {
   // headless: false,
   // slowMo: 250
 }
+
+// hooks
 
 test.before(async t => {
   const { host, server } = await serveDev()
@@ -37,23 +41,24 @@ test.afterEach.always(async t => {
   await page.close()
 })
 
-test('initial', async t => {
+// tests
+
+test('results', async t => {
   const { host, page } = t.context
 
-  const getFromPage = () => {
-    const { Agent } = window.IdemTestLibrary
-    return Agent().detect()
-  }
+  const USER_AGENT = `Mozilla/5.0 Test ${Date.now()}`
 
+  await page.setUserAgent(USER_AGENT)
   await page.goto(host)
 
-  const { id, data } = await page.evaluate(getFromPage)
+  const getUserAgent = () => {
+    const factory = window.IdemTestLibrary
+    const probe = factory()
 
-  //
+    return probe()
+  }
 
-  t.is(typeof id, 'string')
+  const userAgent = await page.evaluate(getUserAgent)
 
-  t.not(data.UserAgent, undefined)
-  t.not(data.TimezoneOffset, undefined)
-  t.not(data.SystemFonts, undefined)
+  t.is(userAgent, USER_AGENT)
 })
