@@ -42,6 +42,7 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
+    "@pouk/idem-type-trait": "*",
     "font-detect": "^1.0.0"
   }
 }

@@ -43,19 +43,21 @@ test.afterEach.always(async t => {
 
 // tests
 
-test('results', async t => {
+test('detect', async t => {
   const { host, page } = t.context
 
   await page.goto(host)
 
-  const getAgentProperites = () => {
+  const detect = () => {
     const Agent = window.IdemTestLibrary
     const agent = new Agent()
 
-    return Object.keys(agent)
+    return agent.detect()
   }
 
-  const results = await page.evaluate(getAgentProperites)
+  const results = await page.evaluate(detect)
 
-  t.true(results.includes('probes'))
+  console.log(results)
+
+  t.pass()
 })

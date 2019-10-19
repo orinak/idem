@@ -32,8 +32,12 @@ test.after.always(async t => {
 })
 
 test.beforeEach(async t => {
-  const { browser } = t.context
-  t.context.page = await browser.newPage()
+  const { host, browser } = t.context
+
+  const page = await browser.newPage()
+  await page.goto(host)
+
+  t.context.page = page
 })
 
 test.afterEach.always(async t => {
@@ -43,19 +47,38 @@ test.afterEach.always(async t => {
 
 // tests
 
-test('results', async t => {
-  const { host, page } = t.context
+test('result', async t => {
+  const { page } = t.context
 
-  await page.goto(host)
-
-  const getFontList = () => {
+  const examine = () => {
     const factory = window.IdemTestLibrary
     const probe = factory()
 
     return probe()
   }
 
-  const results = await page.evaluate(getFontList)
+  await page
+    .evaluate(examine)
+    .then(res => {
+      t.is(res.key, 'SystemFonts')
+      t.true(Array.isArray(res.value))
+    })
+})
 
-  t.true(Array.isArray(results))
+test('result:serialized', async t => {
+  const { page } = t.context
+
+  const examineSerialized = () => {
+    const factory = window.IdemTestLibrary
+    const probe = factory()
+
+    return probe()
+      .then(String)
+  }
+
+  await page
+    .evaluate(examineSerialized)
+    .then(res => {
+      t.regex(res, /\(SystemFonts: .*\)/)
+    })
 })
