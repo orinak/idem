@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Client",
   "keywords": [
     "idem",
@@ -47,6 +47,6 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "@pouk/idem-client-agent": "^0.1.0"
+    "@pouk/idem-client-agent": "^0.1.1"
   }
 }
