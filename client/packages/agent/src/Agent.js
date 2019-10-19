@@ -22,12 +22,12 @@ function Agent () {
     return new Agent()
   }
 
-  const probes = []
-
-  for (const name in Probes) {
-    const make = Probes[name]
-    probes.push(make())
-  }
+  // derive probes
+  const probes = Object
+    .entries(Probes)
+    // order by name
+    .sort(([a], [b]) => a > b ? 1 : -1)
+    .map(([_, factory]) => factory())
 
   this.probes = probes
 
