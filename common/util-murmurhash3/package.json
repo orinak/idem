@@ -1,12 +1,13 @@
 {
-  "name": "@pouk/idem-common-encode-java-hashcode",
+  "name": "@pouk/idem-util-murmurhash3",
   "version": "0.1.0",
-  "description": "A JavaScript implementation of Java's hashCode method",
+  "description": "A JavaScript implementation of Murmurhash3",
   "keywords": [
     "idem",
+    "util",
     "encode"
   ],
-  "homepage": "https://github.com/pouk/idem/tree/master/common/encode-java-hashcode#readme",
+  "homepage": "https://github.com/pouk/idem/tree/master/common/util-murmurhash3#readme",
   "license": "MIT",
   "main": "index.js",
   "repository": {
