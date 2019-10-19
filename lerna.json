@@ -2,12 +2,12 @@
   "packages": [
     "client/",
     "client/packages/*",
-    "server/",
-    "server/packages/*",
     "common/*",
-    "config/*"
+    "config/*",
+    "server/",
+    "server/packages/*"
   ],
-  "version": "0.0.1",
+  "version": "0.1.0",
   "command": {
     "bootstrap": {
       "hoist": true

@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-agent",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Agent",
   "keywords": [
     "idem",
@@ -25,8 +25,8 @@
     "url": "https://github.com/pouk/idem/issues"
   },
   "devDependencies": {
-    "@pouk/idem-config-ava-base": "*",
-    "@pouk/idem-config-webpack-test": "*",
+    "@pouk/idem-config-ava-base": "^0.1.0",
+    "@pouk/idem-config-webpack-test": "^0.1.0",
     "ava": "^2.4.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
@@ -39,7 +39,7 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
-    "@pouk/idem-client-probes": "*",
-    "@pouk/idem-common-encode-java-hashcode": "*"
+    "@pouk/idem-client-probes": "^0.1.0",
+    "@pouk/idem-common-encode-java-hashcode": "^0.1.0"
   }
 }

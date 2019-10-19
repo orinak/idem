@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-probe-system-fonts",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Probe for system fonts",
   "keywords": [
     "idem",
@@ -22,14 +22,13 @@
     "lint:staged": "lint-staged",
     "precommit": "npm run lint:staged",
     "prepush": "npm run lint && npm test"
-
   },
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
   },
   "devDependencies": {
-    "@pouk/idem-config-ava-base": "*",
-    "@pouk/idem-config-webpack-test": "*",
+    "@pouk/idem-config-ava-base": "^0.1.0",
+    "@pouk/idem-config-webpack-test": "^0.1.0",
     "ava": "^2.4.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
@@ -42,7 +41,7 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
-    "@pouk/idem-type-trait": "*",
+    "@pouk/idem-type-trait": "^0.1.0",
     "font-detect": "^1.0.0"
   }
 }

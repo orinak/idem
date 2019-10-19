@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-type-trait",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Type class for a characteristic notation",
   "keywords": [
     "idem",

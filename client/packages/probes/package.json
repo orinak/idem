@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-probes",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Probes collection",
   "keywords": [
     "idem",
@@ -36,8 +36,8 @@
     "nyc": "^14.1.1"
   },
   "dependencies": {
-    "@pouk/idem-client-probe-user-agent": "*",
-    "@pouk/idem-client-probe-timezone-offset": "*",
-    "@pouk/idem-client-probe-system-fonts": "*"
+    "@pouk/idem-client-probe-system-fonts": "^0.1.0",
+    "@pouk/idem-client-probe-timezone-offset": "^0.1.0",
+    "@pouk/idem-client-probe-user-agent": "^0.1.0"
   }
 }

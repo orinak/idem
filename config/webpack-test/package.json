@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-config-webpack-test",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Webpack config for tests",
   "keywords": [
     "idem",

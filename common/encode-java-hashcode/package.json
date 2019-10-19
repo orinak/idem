@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-common-encode-java-hashcode",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A JavaScript implementation of Java's hashCode method",
   "keywords": [
     "idem",

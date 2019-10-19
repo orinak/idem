@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-config-ava-base",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Base AVA config",
   "keywords": [
     "idem",
@@ -17,6 +17,5 @@
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
   },
-  "license": "MIT",
   "main": "./ava.config.js"
 }
