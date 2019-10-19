@@ -1,18 +1,6 @@
 const Probes = require('@pouk/idem-client-probes')
-const encode = require('@pouk/idem-common-encode-java-hashcode')
 
-// helpers
-
-const traitsToString = traits => traits.join('\n')
-
-const traitsToObject = traits => {
-  const fn = (acc, { key, value }) => {
-    acc[key] = value
-    return acc
-  }
-
-  return traits.reduce(fn, {})
-}
+const { traitsToHash, traitsToData } = require('./helpers')
 
 // main
 
@@ -34,6 +22,8 @@ function Agent () {
   return this
 }
 
+// prototype methods
+
 Agent.prototype.detect = async function () {
   const { probes } = this
 
@@ -41,15 +31,12 @@ Agent.prototype.detect = async function () {
   const traits = await Promise
     .all(probes.map(invoke))
 
-  const id = encode(traitsToString(traits))
-  const data = traitsToObject(traits)
-
   return {
-    id,
-    data
+    id: traitsToHash(traits),
+    data: traitsToData(traits)
   }
 }
 
-module.exports = Agent
+// expose constructor
 
-module.exports.encode = encode
+module.exports = Agent
