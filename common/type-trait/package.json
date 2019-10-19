@@ -1,16 +1,14 @@
 {
-  "name": "@pouk/idem-client-probe-system-fonts",
+  "name": "@pouk/idem-type-trait",
   "version": "0.0.1",
-  "description": "Probe for system fonts",
+  "description": "Type class for a characteristic notation",
   "keywords": [
     "idem",
-    "client",
-    "probe",
-    "system-fonts"
+    "type"
   ],
-  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probe-system-fonts#readme",
+  "homepage": "https://github.com/pouk/idem/tree/master/common/type-trait#readme",
   "license": "MIT",
-  "main": "src/TimezoneOffset.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pouk/idem.git"
@@ -22,14 +20,11 @@
     "lint:staged": "lint-staged",
     "precommit": "npm run lint:staged",
     "prepush": "npm run lint && npm test"
-
   },
   "bugs": {
     "url": "https://github.com/pouk/idem/issues"
   },
   "devDependencies": {
-    "@pouk/idem-config-ava-base": "*",
-    "@pouk/idem-config-webpack-test": "*",
     "ava": "^2.4.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
@@ -38,11 +33,9 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "lint-staged": "^9.4.2",
-    "nyc": "^14.1.1",
-    "puppeteer": "^1.20.0"
+    "nyc": "^14.1.1"
   },
   "dependencies": {
-    "@pouk/idem-type-trait": "*",
-    "font-detect": "^1.0.0"
+    "ramda": "^0.26.1"
   }
 }

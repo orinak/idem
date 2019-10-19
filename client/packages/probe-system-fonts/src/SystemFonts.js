@@ -1,7 +1,20 @@
 const FontDetector = require('font-detect')
 
-// incomplete list of popular fonts
+const Trait = require('@pouk/idem-type-trait')
+
+// settings
+
+const NAME = 'SystemFonts'
+
+/**
+ * incomplete list of popular fonts
+ */
+
 const FONTS = require('./fonts.json')
+
+// helpers
+
+const traitFrom = Trait.create(NAME)
 
 /**
  * Factory for probe to get (incomplete) list of available fonts
@@ -12,7 +25,7 @@ const FONTS = require('./fonts.json')
 const factory = (opts = {}) => {
   const { fonts = FONTS } = opts
 
-  const compile = tbl => {
+  const parse = tbl => {
     const list = []
 
     for (let i = 0; i < tbl.length; i++) {
@@ -24,20 +37,24 @@ const factory = (opts = {}) => {
     return list
   }
 
-  return function FontList () {
+  function SystemFonts () {
     const detector = new FontDetector()
 
     const detect = (resolve, reject) => {
       const callback = (err, res) =>
         err
           ? reject(err)
-          : resolve(compile(res))
+          : resolve(res)
 
       detector.detect(fonts, callback)
     }
 
     return new Promise(detect)
+      .then(parse)
+      .then(traitFrom)
   }
+
+  return SystemFonts
 }
 
 // expose factory

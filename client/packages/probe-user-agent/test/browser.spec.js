@@ -43,7 +43,7 @@ test.afterEach.always(async t => {
 
 // tests
 
-test('results', async t => {
+test('result', async t => {
   const { host, page } = t.context
 
   const USER_AGENT = `Mozilla/5.0 Test ${Date.now()}`
@@ -51,14 +51,40 @@ test('results', async t => {
   await page.setUserAgent(USER_AGENT)
   await page.goto(host)
 
-  const getUserAgent = () => {
+  const examine = () => {
     const factory = window.IdemTestLibrary
     const probe = factory()
 
     return probe()
   }
 
-  const userAgent = await page.evaluate(getUserAgent)
+  await page
+    .evaluate(examine)
+    .then(res => {
+      t.is(res.key, 'UserAgent')
+      t.is(res.value, USER_AGENT)
+    })
+})
 
-  t.is(userAgent, USER_AGENT)
+test('result:serialized', async t => {
+  const { host, page } = t.context
+
+  const USER_AGENT = `Mozilla/5.0 Test ${Date.now()}`
+
+  await page.setUserAgent(USER_AGENT)
+  await page.goto(host)
+
+  const examine = () => {
+    const factory = window.IdemTestLibrary
+    const probe = factory()
+
+    return probe()
+      .then(String)
+  }
+
+  await page
+    .evaluate(examine)
+    .then(res => {
+      t.is(res, `(UserAgent: ${USER_AGENT})`)
+    })
 })

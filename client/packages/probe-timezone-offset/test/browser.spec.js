@@ -32,8 +32,12 @@ test.after.always(async t => {
 })
 
 test.beforeEach(async t => {
-  const { browser } = t.context
-  t.context.page = await browser.newPage()
+  const { host, browser } = t.context
+
+  const page = await browser.newPage()
+  await page.goto(host)
+
+  t.context.page = page
 })
 
 test.afterEach.always(async t => {
@@ -43,19 +47,39 @@ test.afterEach.always(async t => {
 
 // tests
 
-test('results', async t => {
-  const { host, page } = t.context
+test('result', async t => {
+  const { page } = t.context
 
-  await page.goto(host)
-
-  const getTimezoneOffset = () => {
+  const examine = () => {
     const factory = window.IdemTestLibrary
     const probe = factory()
 
     return probe()
   }
 
-  const timezoneOffset = await page.evaluate(getTimezoneOffset)
+  await page
+    .evaluate(examine)
+    .then(res => {
+      t.is(res.key, 'TimezoneOffset')
+      t.is(typeof res.value, 'number')
+    })
+})
 
-  t.is(typeof timezoneOffset, 'number')
+test('result:serialized', async t => {
+  const { page } = t.context
+
+  const examine = () => {
+    const factory = window.IdemTestLibrary
+    const probe = factory()
+
+    return probe()
+      .then(String)
+  }
+
+  await page
+    .evaluate(examine)
+    .then(res => {
+      const re = /\(TimezoneOffset: -?\d+\)/
+      t.regex(res, re)
+    })
 })
