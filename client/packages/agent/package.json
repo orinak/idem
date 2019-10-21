@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-agent",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Agent",
   "keywords": [
     "idem",
@@ -39,7 +39,7 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
-    "@pouk/idem-client-probes": "^0.1.0",
+    "@pouk/idem-client-probes": "^0.1.2",
     "@pouk/idem-util-murmurhash3": "^0.1.1"
   }
 }

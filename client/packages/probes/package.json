@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-probes",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Probes collection",
   "keywords": [
     "idem",
@@ -36,11 +36,11 @@
     "nyc": "^14.1.1"
   },
   "dependencies": {
+    "@pouk/idem-client-probe-canvas-fingerprint": "^0.1.2",
+    "@pouk/idem-client-probe-mime-types": "^0.1.2",
+    "@pouk/idem-client-probe-navigator-plugins": "^0.1.2",
     "@pouk/idem-client-probe-system-fonts": "^0.1.0",
     "@pouk/idem-client-probe-timezone-offset": "^0.1.0",
-    "@pouk/idem-client-probe-user-agent": "^0.1.0",
-    "@pouk/idem-client-probe-navigator-plugins": "^0.1.0",
-    "@pouk/idem-client-probe-mime-types": "^0.1.0",
-    "@pouk/idem-client-probe-canvas-fingerprint": "^0.1.0"
+    "@pouk/idem-client-probe-user-agent": "^0.1.0"
   }
 }

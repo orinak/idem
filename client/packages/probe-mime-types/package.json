@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-probe-mime-types",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Probe for supported MIME types",
   "keywords": [
     "idem",
