@@ -56,4 +56,5 @@ test('initial', async t => {
   t.not(data.UserAgent, undefined)
   t.not(data.TimezoneOffset, undefined)
   t.not(data.SystemFonts, undefined)
+  t.not(data.NavigatorPlugins, undefined)
 })
