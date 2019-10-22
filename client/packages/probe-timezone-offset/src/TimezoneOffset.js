@@ -2,20 +2,22 @@ const Future = require('fluture')
 
 const Trait = require('@pouk/idem-type-trait')
 
+// helpers
+
+const getTimezoneOffset = () => new Date().getTimezoneOffset()
+
 /**
  * Probe to get timezone offset
  *
- * @signature () => Future Error Trait
- *
- * @returns {Future}
+ * @returns {Future<Error|Trait>}
  */
 
-const probe = () => {
+function TimezoneOffset () {
   return Future
-    .resolve(new Date().getTimezoneOffset())
+    .attempt(getTimezoneOffset)
     .map(Trait.of)
 }
 
 // expose probe
 
-module.exports = probe
+module.exports = TimezoneOffset

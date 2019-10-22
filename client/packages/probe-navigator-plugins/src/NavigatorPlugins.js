@@ -4,6 +4,8 @@ const Trait = require('./Trait')
 
 // helpers
 
+const getNavigatorPlugins = () => window.navigator.plugins
+
 const parse = pluginArray => {
   const it = (plugins, pluginItem) => {
     const { name, version } = pluginItem
@@ -18,18 +20,16 @@ const parse = pluginArray => {
 /**
  * Probe to get browser plugins w/ versions
  *
- * @signature () => Future Error Trait
- *
- * @returns {Future}
+ * @returns {Future<Error|Trait>}
  */
 
-const probe = () => {
+function NavigatorPlugins () {
   return Future
-    .resolve(window.navigator.plugins)
+    .attempt(getNavigatorPlugins)
     .map(parse)
     .map(Trait.of)
 }
 
 // expose probe
 
-module.exports = probe
+module.exports = NavigatorPlugins

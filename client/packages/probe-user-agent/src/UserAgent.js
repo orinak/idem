@@ -2,20 +2,22 @@ const Future = require('fluture')
 
 const Trait = require('@pouk/idem-type-trait')
 
+// helpers
+
+const getUserAgent = () => window.navigator.userAgent
+
 /**
  * Probe to get User Agent
  *
- * @signature () => Future Error Trait
- *
- * @returns {Future}
+ * @returns {Future<Error|Trait>}
  */
 
-const probe = () => {
+function UserAgent () {
   return Future
-    .resolve(window.navigator.userAgent)
+    .attempt(getUserAgent)
     .map(Trait.of)
 }
 
 // expose probe
 
-module.exports = probe
+module.exports = UserAgent

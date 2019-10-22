@@ -4,6 +4,8 @@ const Trait = require('@pouk/idem-type-trait')
 
 // helpers
 
+const getNavigatorMimeTypes = () => window.navigator.mimeTypes
+
 const parse = mimeTypeArray => {
   const it = (acc, mimeType) => {
     const { type } = mimeType
@@ -18,18 +20,16 @@ const parse = mimeTypeArray => {
 /**
  * Probe to get (incomplete) list of supported MIME Types
  *
- * @signature () => Future Error Trait
- *
- * @returns {Future}
+ * @returns {Future<Error|Trait>}
  */
 
-const probe = () => {
+function MimeTypes () {
   return Future
-    .resolve(window.navigator.mimeTypes)
+    .attempt(getNavigatorMimeTypes)
     .map(parse)
     .map(Trait.of)
 }
 
 // expose probe
 
-module.exports = probe
+module.exports = MimeTypes

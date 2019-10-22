@@ -1,5 +1,6 @@
 const Future = require('fluture')
 
+// TODO: implement locally
 const FontDetector = require('font-detect')
 
 const Trait = require('@pouk/idem-type-trait')
@@ -13,12 +14,10 @@ const FONTS = require('./fonts.json')
 /**
  * Probe to get (incomplete) list of available fonts
  *
- * @signature () => Future Error Trait
- *
- * @returns {Future}
+ * @returns {Future<Error|Trait>}
  */
 
-const probe = (opts = {}) => {
+function SystemFonts (opts = {}) {
   const { fonts = FONTS } = opts
 
   const parse = tbl => {
@@ -46,8 +45,4 @@ const probe = (opts = {}) => {
 
 // expose probe
 
-module.exports = probe
-
-// expose base font names
-
-module.exports.fonts = FONTS
+module.exports = SystemFonts
