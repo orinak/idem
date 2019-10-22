@@ -55,31 +55,16 @@ test('result', async t => {
     const probe = factory()
 
     return probe()
+      .then(res => ({
+        str: res.toString(),
+        val: res.toJSON()
+      }))
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(res.key, 'TimezoneOffset')
-      t.is(typeof res.value, 'number')
-    })
-})
-
-test('result:serialized', async t => {
-  const { page } = t.context
-
-  const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
-
-    return probe()
-      .then(String)
-  }
-
-  await page
-    .evaluate(examine)
-    .then(res => {
-      const re = /\(TimezoneOffset: -?\d+\)/
-      t.regex(res, re)
+      t.is(typeof res.str, 'string')
+      t.is(typeof res.val, 'number')
     })
 })

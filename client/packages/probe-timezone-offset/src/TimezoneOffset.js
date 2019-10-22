@@ -1,13 +1,5 @@
 const Trait = require('@pouk/idem-type-trait')
 
-//
-
-const NAME = 'TimezoneOffset'
-
-// helpers
-
-const traitFrom = Trait.create(NAME)
-
 /**
  * Factory for probe to get timezone offset
  *
@@ -20,7 +12,7 @@ const factory = () => {
 
     return Promise
       .resolve(value)
-      .then(traitFrom)
+      .then(Trait.of)
   }
 
   return TimezoneOffset

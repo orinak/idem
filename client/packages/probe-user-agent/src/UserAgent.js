@@ -1,13 +1,5 @@
 const Trait = require('@pouk/idem-type-trait')
 
-//
-
-const NAME = 'UserAgent'
-
-// helpers
-
-const traitFrom = Trait.create(NAME)
-
 /**
  * Factory for probe to get User Agent
  *
@@ -20,7 +12,7 @@ const factory = () => {
 
     return Promise
       .resolve(value)
-      .then(traitFrom)
+      .then(Trait.of)
   }
 
   return UserAgent

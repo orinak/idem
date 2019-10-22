@@ -1,8 +1,4 @@
-const Trait = require('@pouk/idem-type-trait')
-
-//
-
-const NAME = 'NavigatorPlugins'
+const Trait = require('./Trait')
 
 // helpers
 
@@ -17,16 +13,6 @@ const parse = pluginArray => {
     .reduce(it, [])
 }
 
-const serialize = plugins => {
-  const fromTuple = ({ name, version }) => `${name}@v${version}`
-
-  return plugins
-    .map(fromTuple)
-    .join(', ')
-}
-
-const traitFrom = value => Trait(NAME, value, serialize)
-
 /**
  * Factory for probe to get browser plugins w/ versions
  *
@@ -40,7 +26,7 @@ const factory = () => {
     return Promise
       .resolve(navigator.plugins)
       .then(parse)
-      .then(traitFrom)
+      .then(Trait.of)
   }
 
   return NavigatorPlugins

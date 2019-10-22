@@ -72,12 +72,17 @@ test('predefined result (serialized)', async t => {
     const factory = window.IdemTestLibrary
     const probe = factory()
 
-    return probe().then(String)
+    return probe()
+      .then(res => ({
+        str: res.toString(),
+        val: res.toJSON()
+      }))
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.regex(res, /(MimeTypes: (.*))/)
+      t.is(typeof res.str, 'string')
+      t.true(Array.isArray(res.val))
     })
 })

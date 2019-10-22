@@ -60,6 +60,6 @@ test('predefined result (serialized)', async t => {
   await page
     .evaluate(examine)
     .then(res => {
-      t.regex(res, /(CanvasFingerprint: (.*))/)
+      t.regex(res, /data:image\/png;base64,(.*)/)
     })
 })

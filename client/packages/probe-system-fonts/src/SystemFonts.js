@@ -2,19 +2,11 @@ const FontDetector = require('font-detect')
 
 const Trait = require('@pouk/idem-type-trait')
 
-// settings
-
-const NAME = 'SystemFonts'
-
 /**
  * incomplete list of popular fonts
  */
 
 const FONTS = require('./fonts.json')
-
-// helpers
-
-const traitFrom = Trait.create(NAME)
 
 /**
  * Factory for probe to get (incomplete) list of available fonts
@@ -51,7 +43,7 @@ const factory = (opts = {}) => {
 
     return new Promise(detect)
       .then(parse)
-      .then(traitFrom)
+      .then(Trait.of)
   }
 
   return SystemFonts

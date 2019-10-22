@@ -1,11 +1,5 @@
 const Trait = require('@pouk/idem-type-trait')
 
-//
-
-const NAME = 'CanvasFingerprint'
-
-// helpers
-
 /**
  * from https://github.com/Valve/fingerprintjs2
  */
@@ -80,12 +74,6 @@ const fingerprintFrom = function (canvas, opts = {}) {
   return canvas.toDataURL()
 }
 
-const serialize = dataUrl => {
-  return String(dataUrl)
-}
-
-const traitFrom = value => Trait(NAME, value, serialize)
-
 /**
  * Factory for probe to get (incomplete) list of supported MIME Types
  *
@@ -99,7 +87,7 @@ const factory = () => {
     return Promise
       .resolve(canvas)
       .then(fingerprintFrom)
-      .then(traitFrom)
+      .then(Trait.of)
   }
 
   return CanvasFingerprint

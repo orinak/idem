@@ -55,30 +55,16 @@ test('result', async t => {
     const probe = factory()
 
     return probe()
+      .then(res => ({
+        str: res.toString(),
+        val: res.toJSON()
+      }))
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(res.key, 'SystemFonts')
-      t.true(Array.isArray(res.value))
-    })
-})
-
-test('result:serialized', async t => {
-  const { page } = t.context
-
-  const examineSerialized = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
-
-    return probe()
-      .then(String)
-  }
-
-  await page
-    .evaluate(examineSerialized)
-    .then(res => {
-      t.regex(res, /\(SystemFonts: .*\)/)
+      t.regex(res.str, /(.*,?)*/)
+      t.true(Array.isArray(res.val))
     })
 })
