@@ -1,3 +1,5 @@
+const Future = require('fluture')
+
 const Trait = require('@pouk/idem-type-trait')
 
 /**
@@ -75,24 +77,22 @@ const fingerprintFrom = function (canvas, opts = {}) {
 }
 
 /**
- * Factory for probe to get (incomplete) list of supported MIME Types
+ * Probe to get canvas fingerprint
  *
- * @returns {Function}
+ * @signature () => Future Error Trait
+ *
+ * @returns {Future}
  */
 
-const factory = () => {
-  function CanvasFingerprint () {
-    const canvas = document.createElement('canvas')
+const probe = () => {
+  const canvas = document.createElement('canvas')
 
-    return Promise
-      .resolve(canvas)
-      .then(fingerprintFrom)
-      .then(Trait.of)
-  }
-
-  return CanvasFingerprint
+  return Future
+    .resolve(canvas)
+    .map(fingerprintFrom)
+    .map(Trait.of)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = probe

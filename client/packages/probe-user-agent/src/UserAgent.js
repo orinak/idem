@@ -1,23 +1,21 @@
+const Future = require('fluture')
+
 const Trait = require('@pouk/idem-type-trait')
 
 /**
- * Factory for probe to get User Agent
+ * Probe to get User Agent
  *
- * @returns {Function}
+ * @signature () => Future Error Trait
+ *
+ * @returns {Future}
  */
 
-const factory = () => {
-  function UserAgent () {
-    const value = window.navigator.userAgent
-
-    return Promise
-      .resolve(value)
-      .then(Trait.of)
-  }
-
-  return UserAgent
+const probe = () => {
+  return Future
+    .resolve(window.navigator.userAgent)
+    .map(Trait.of)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = probe

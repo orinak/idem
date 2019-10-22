@@ -70,14 +70,14 @@ test('predefined result', async t => {
   }, PLUGINS)
 
   const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
+    const Probe = window.IdemTestLibrary
 
-    return probe()
-      .then(res => ({
+    return Probe()
+      .map(res => ({
         str: res.toString(),
         val: res.toJSON()
       }))
+      .promise()
   }
 
   await page

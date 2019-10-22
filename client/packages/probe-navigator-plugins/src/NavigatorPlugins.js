@@ -1,3 +1,5 @@
+const Future = require('fluture')
+
 const Trait = require('./Trait')
 
 // helpers
@@ -14,24 +16,20 @@ const parse = pluginArray => {
 }
 
 /**
- * Factory for probe to get browser plugins w/ versions
+ * Probe to get browser plugins w/ versions
  *
- * @returns {Function}
+ * @signature () => Future Error Trait
+ *
+ * @returns {Future}
  */
 
-const factory = () => {
-  function NavigatorPlugins () {
-    const { navigator } = window
-
-    return Promise
-      .resolve(navigator.plugins)
-      .then(parse)
-      .then(Trait.of)
-  }
-
-  return NavigatorPlugins
+const probe = () => {
+  return Future
+    .resolve(window.navigator.plugins)
+    .map(parse)
+    .map(Trait.of)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = probe

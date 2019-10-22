@@ -51,10 +51,11 @@ test('predefined result (serialized)', async t => {
   const { page } = t.context
 
   const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
+    const Probe = window.IdemTestLibrary
 
-    return probe().then(String)
+    return Probe()
+      .map(String)
+      .promise()
   }
 
   await page

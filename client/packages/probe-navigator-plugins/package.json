@@ -40,6 +40,7 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
-    "@pouk/idem-type-trait": "^0.1.0"
+    "@pouk/idem-type-trait": "^0.1.0",
+    "fluture": "^11.0.3"
   }
 }

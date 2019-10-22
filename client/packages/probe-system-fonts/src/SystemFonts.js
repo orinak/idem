@@ -1,3 +1,5 @@
+const Future = require('fluture')
+
 const FontDetector = require('font-detect')
 
 const Trait = require('@pouk/idem-type-trait')
@@ -9,12 +11,14 @@ const Trait = require('@pouk/idem-type-trait')
 const FONTS = require('./fonts.json')
 
 /**
- * Factory for probe to get (incomplete) list of available fonts
+ * Probe to get (incomplete) list of available fonts
  *
- * @returns {Function}
+ * @signature () => Future Error Trait
+ *
+ * @returns {Future}
  */
 
-const factory = (opts = {}) => {
+const probe = (opts = {}) => {
   const { fonts = FONTS } = opts
 
   const parse = tbl => {
@@ -29,29 +33,20 @@ const factory = (opts = {}) => {
     return list
   }
 
-  function SystemFonts () {
+  const detect = done => {
     const detector = new FontDetector()
-
-    const detect = (resolve, reject) => {
-      const callback = (err, res) =>
-        err
-          ? reject(err)
-          : resolve(res)
-
-      detector.detect(fonts, callback)
-    }
-
-    return new Promise(detect)
-      .then(parse)
-      .then(Trait.of)
+    return detector.detect(fonts, done)
   }
 
-  return SystemFonts
+  return Future
+    .node(detect)
+    .map(parse)
+    .map(Trait.of)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = probe
 
 // expose base font names
 
