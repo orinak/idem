@@ -10,24 +10,24 @@
 ```js
 const Trait = require('@pouk/idem-type-trait')
 
-const key = 'SystemFonts'
 const value = [
   'Courier',
   'DejaVu Sans Mono'
 ]
-const serialize = value => '[' + value.join(', ') + ']'
 
-const trait = new Trait(key, value, serialize)
+const getString = value => '[' + value.join(', ') + ']'
 
-console.log(String(Trait(key, value)))
+const trait = new Trait({ getString }, value)
+
+console.log(String(Trait.of(value)))
 // > "(SystemFonts: Courier,DejaVu Sans Mono)"
 
-console.log(String(Trait(key, value, serialize)))
+console.log(String(Trait.create({ getString }, value)))
 // > "(SystemFonts: [Courier, DejaVu Sans Mono])"
 ```
 
 ### API
 
-#### `Trait.create(key, value)`
+#### `Trait.of(value)`
 
-#### `Trait.createCustom(key, value, serialize)`
+#### `Trait.create(extensions, value)`

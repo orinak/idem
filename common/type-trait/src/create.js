@@ -2,8 +2,8 @@ const R = require('ramda')
 
 const Trait = require('./Trait')
 
-function create (key, value) {
-  return new Trait(key, value)
+function create (options, value) {
+  return new Trait(value, options)
 }
 
 // expose curried

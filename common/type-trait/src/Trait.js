@@ -1,17 +1,8 @@
-// helpers
-
-const toString = value => value.toString()
-
 // constructor
 
-function Trait (key, value, serialize = toString) {
-  if (!(this instanceof Trait)) {
-    return new Trait(key, value, serialize)
-  }
-
-  this.key = key
+function Trait (value, options = {}) {
   this.value = value
-  this.serialize = serialize
+  this.options = options
 
   return this
 }
@@ -19,8 +10,28 @@ function Trait (key, value, serialize = toString) {
 // prototype methods
 
 Trait.prototype.toString = function () {
-  const { key, value, serialize } = this
-  return `(${key}: ${serialize(value)})`
+  const { options, value } = this
+
+  const parse = typeof options.getString === 'function'
+    ? options.getString
+    : value => String(value)
+
+  return parse(value)
+}
+
+Trait.prototype['@@show'] = function () {
+  const text = this.toString()
+  return `Trait (${text})`
+}
+
+Trait.prototype.toJSON = function () {
+  const { options, value } = this
+
+  const parse = typeof options.getJSON === 'function'
+    ? options.getJSON
+    : value => value
+
+  return parse(value)
 }
 
 // expose constructor

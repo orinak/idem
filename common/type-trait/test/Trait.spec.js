@@ -1,66 +1,107 @@
 import test from 'ava'
 
-import Trait from '..'
+import * as R from 'ramda'
 
-test('Trait', t => {
-  t.is(typeof Trait, 'function')
-})
+import show from 'sanctuary-show'
+
+import Trait from '..'
 
 test('Trait.create', t => {
   const { create } = Trait
 
-  t.is(typeof Trait.create, 'function')
+  const options = {
+    toString: JSON.stringify,
+    toJSON: R.identity
+  }
+
+  const value = { a: 1 }
 
   // normal
 
-  t.true(create('k', 'v') instanceof Trait)
+  t.true(create(options, value) instanceof Trait)
 
   // curried
 
-  const createWithKey = Trait.create('k')
-  t.is(typeof createWithKey, 'function')
-  t.true(createWithKey('v') instanceof Trait)
+  const createExtended = Trait.create(options)
+  t.is(typeof createExtended, 'function')
+  t.true(createExtended(value) instanceof Trait)
 })
 
-test('Trait.createCustom', t => {
-  const { createCustom } = Trait
+test('Trait.of', t => {
+  const { of } = Trait
 
-  // type
+  const value = { a: 1 }
 
-  t.is(typeof createCustom, 'function')
-
-  // normal
-
-  t.true(createCustom('k', 'v', x => x) instanceof Trait)
-
-  // curried
-
-  const createWithKey = Trait.createCustom('k')
-  t.is(typeof createWithKey, 'function')
-  t.true(createWithKey('v', x => x) instanceof Trait)
-
-  const createWithKV = Trait.createCustom('k', 'v')
-  t.is(typeof createWithKV, 'function')
-  t.true(createWithKV(x => x) instanceof Trait)
+  t.true(of(value) instanceof Trait)
 })
 
 test('trait.toString', t => {
-  const key = 'SystemFonts'
-  const value = [
-    'Courier',
-    'DejaVu Sans Mono'
-  ]
-  const serialize = value => '[' + value.join(', ') + ']'
+  const getString = JSON.stringify
+
+  const primitiveValue = 'ok'
+  const complexValue = {
+    a: 1,
+    b: 2
+  }
 
   t.is(
-    String(Trait(key, value)),
-    '(SystemFonts: Courier,DejaVu Sans Mono)',
-    'default toString method'
+    Trait.of(primitiveValue).toString(),
+    primitiveValue,
+    'default `getString` on primitive'
   )
 
   t.is(
-    String(Trait(key, value, serialize)),
-    '(SystemFonts: [Courier, DejaVu Sans Mono])',
-    'custom serialize function'
+    Trait.of(complexValue).toString(),
+    '[object Object]',
+    'default `getString` on complex'
+  )
+
+  t.is(
+    Trait.create({ getString }, complexValue).toString(),
+    getString(complexValue),
+    'custom `getString` on complex'
+  )
+})
+
+test('trait[\'@@show\']', t => {
+  const getString = JSON.stringify
+
+  const primitiveValue = 'ok'
+  const complexValue = {
+    a: 1,
+    b: 2
+  }
+
+  t.is(
+    show(Trait.of(primitiveValue)),
+    `Trait (${primitiveValue})`,
+    'show w/ default `toString`'
+  )
+
+  t.is(
+    show(Trait.create({ getString }, complexValue)),
+    `Trait (${getString(complexValue)})`,
+    'show w/ custom `toString`'
+  )
+})
+
+test('trait.toJSON', t => {
+  const getJSON = R.filter(x => x % 2)
+
+  const value = {
+    a: 1,
+    b: 2
+  }
+
+  t.deepEqual(
+    Trait.of(value).toJSON(),
+    value,
+    'default `getValue` method'
+  )
+
+  t.deepEqual(
+    Trait.create({ getJSON }, value).toJSON(),
+    { a: 1 },
+    'with ext. toString'
   )
 })
