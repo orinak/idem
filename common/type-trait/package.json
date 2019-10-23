@@ -33,10 +33,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "lint-staged": "^9.4.2",
-    "nyc": "^14.1.1",
-    "sanctuary-show": "^1.0.0"
+    "nyc": "^14.1.1"
   },
   "dependencies": {
-    "ramda": "^0.26.1"
+    "daggy": "^1.4.0",
+    "json-stringify-deterministic": "^1.0.1",
+    "ramda": "^0.26.1",
+    "sort-keys-recursive": "^2.0.1"
   }
 }
