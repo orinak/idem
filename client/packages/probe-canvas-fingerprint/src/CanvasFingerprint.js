@@ -9,13 +9,13 @@ const getFingerprint = require('./fingerprint')
  *
  * @param {Object} [options]
  *
- * @returns {Future<Trait>}
+ * @returns {Future<Error|Trait>}
  */
 
 function CanvasFingerprint (options) {
   return Future
     .encase(getFingerprint, options)
-    .fold(Trait.empty, Trait.GenericTrait)
+    .map(Trait.GenericTrait)
 }
 
 // expose probe

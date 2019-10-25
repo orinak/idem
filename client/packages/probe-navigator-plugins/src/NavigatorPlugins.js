@@ -27,7 +27,7 @@ function NavigatorPlugins () {
   return Future
     .attempt(getNavigatorPlugins)
     .map(parse)
-    .fold(Trait.empty, Trait.GenericTrait)
+    .map(Trait.GenericTrait)
 }
 
 // expose probe

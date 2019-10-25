@@ -9,13 +9,13 @@ const getTimezoneOffset = () => new Date().getTimezoneOffset()
 /**
  * Probe to get timezone offset
  *
- * @returns {Future<Trait>}
+ * @returns {Future<Error|Trait>}
  */
 
 function TimezoneOffset () {
   return Future
     .attempt(getTimezoneOffset)
-    .fold(Trait.empty, Trait.GenericTrait)
+    .map(Trait.GenericTrait)
 }
 
 // expose probe

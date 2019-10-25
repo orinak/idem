@@ -20,14 +20,14 @@ const parse = mimeTypeArray => {
 /**
  * Probe to get (incomplete) list of supported MIME Types
  *
- * @returns {Future<Trait>}
+ * @returns {Future<Error|Trait>}
  */
 
 function MimeTypes () {
   return Future
     .attempt(getNavigatorMimeTypes)
     .map(parse)
-    .fold(Trait.empty, Trait.GenericTrait)
+    .map(Trait.GenericTrait)
 }
 
 // expose probe

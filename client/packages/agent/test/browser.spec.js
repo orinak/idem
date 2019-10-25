@@ -48,21 +48,6 @@ test.afterEach.always(async t => {
 })
 
 // tests
-test('probes', async t => {
-  const { page } = t.context
-
-  const getProbeNames = () => {
-    const Agent = window.IdemTestLibrary
-
-    return new Agent().probes.map(fn => fn.name)
-  }
-
-  await page
-    .evaluate(getProbeNames)
-    .then(names => {
-      t.deepEqual(names, names.sort(), 'ordered')
-    })
-})
 
 test('result', async t => {
   const { page } = t.context
@@ -71,7 +56,9 @@ test('result', async t => {
     const Agent = window.IdemTestLibrary
     const agent = new Agent()
 
-    return agent.detect()
+    return agent
+      .detect()
+      .promise()
   }
 
   const res = await page.evaluate(detect)

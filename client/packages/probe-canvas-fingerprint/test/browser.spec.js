@@ -59,6 +59,7 @@ test('with disabled reading from canvas', async t => {
     const Probe = window.IdemTestLibrary
 
     return Probe()
+      .fold(err => err, x => x)
       .map(String)
       .promise()
   }
@@ -66,7 +67,7 @@ test('with disabled reading from canvas', async t => {
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(res, 'Trait.Nothing')
+      t.regex(res, /^SecurityError: .*/, 'throws')
     })
 
   // dispose

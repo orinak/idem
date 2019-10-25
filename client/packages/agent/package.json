@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@pouk/idem-client-probes": "^0.1.2",
+    "@pouk/idem-client-runner": "*",
     "@pouk/idem-util-murmurhash3": "^0.1.1"
   }
 }

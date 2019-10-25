@@ -1,50 +1,34 @@
 const Probes = require('@pouk/idem-client-probes')
 
+const runner = require('@pouk/idem-client-runner')
+
 const { traitsToHash } = require('./helpers')
 
 // main
 
-function Agent () {
+function Agent (config) {
   // use w/o `new` keyword
   if (!(this instanceof Agent)) {
     return new Agent()
   }
 
-  // derive probes
-  const it = pkg => {
-    const [name, create] = pkg
-    const format = result => ({ name, result })
-    return create().map(format)
-  }
-  const probes = Object
-    .entries(Probes)
-    // order by name
-    .sort(([a], [b]) => a > b ? 1 : -1)
-    .map(it)
-
-  this.probes = probes
+  this.config = config
 
   return this
 }
 
 // prototype methods
 
-Agent.prototype.detect = async function () {
-  const { probes } = this
+Agent.prototype.detect = function () {
+  const { config } = this
 
-  const invoke = probe => probe.promise()
-  const results = await Promise
-    .all(probes.map(invoke))
-
-  const traits = results.reduce((acc, { name, result }) => {
-    acc[name] = result
-    return acc
+  const format = data => ({
+    id: traitsToHash(data),
+    data
   })
 
-  return {
-    id: traitsToHash(traits),
-    data: traits
-  }
+  return runner(Probes, config || {})
+    .map(format)
 }
 
 // expose constructor
