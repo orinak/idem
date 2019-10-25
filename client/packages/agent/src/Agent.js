@@ -1,6 +1,6 @@
 const Probes = require('@pouk/idem-client-probes')
 
-const { traitsToHash, traitsToData } = require('./helpers')
+const { traitsToHash } = require('./helpers')
 
 // main
 
@@ -11,11 +11,16 @@ function Agent () {
   }
 
   // derive probes
+  const it = pkg => {
+    const [name, create] = pkg
+    const format = result => ({ name, result })
+    return create().map(format)
+  }
   const probes = Object
     .entries(Probes)
     // order by name
     .sort(([a], [b]) => a > b ? 1 : -1)
-    .map(([_, factory]) => factory())
+    .map(it)
 
   this.probes = probes
 
@@ -27,13 +32,18 @@ function Agent () {
 Agent.prototype.detect = async function () {
   const { probes } = this
 
-  const invoke = fn => fn()
-  const traits = await Promise
+  const invoke = probe => probe.promise()
+  const results = await Promise
     .all(probes.map(invoke))
+
+  const traits = results.reduce((acc, { name, result }) => {
+    acc[name] = result
+    return acc
+  })
 
   return {
     id: traitsToHash(traits),
-    data: traitsToData(traits)
+    data: traits
   }
 }
 

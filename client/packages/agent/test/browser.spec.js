@@ -37,6 +37,8 @@ test.beforeEach(async t => {
   const page = await browser.newPage()
   await page.goto(host)
 
+  await page.on('console', msg => console.log(msg.text()))
+
   t.context.page = page
 })
 
