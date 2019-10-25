@@ -10,24 +10,36 @@
 ```js
 const Trait = require('@pouk/idem-type-trait')
 
-const value = [
+const availableFonts = [
   'Courier',
   'DejaVu Sans Mono'
 ]
 
-const getString = value => '[' + value.join(', ') + ']'
+const fontsTrait = Trait.GenericTrait(availableFonts)
 
-const trait = new Trait({ getString }, value)
-
-console.log(String(Trait.of(value)))
-// > "(SystemFonts: Courier,DejaVu Sans Mono)"
-
-console.log(String(Trait.create({ getString }, value)))
-// > "(SystemFonts: [Courier, DejaVu Sans Mono])"
+console.log(String(fontsTrait))
+// > Trait.GenericTrait(["Courier","DejaVu Sans Mono"])
 ```
+
+### Variants
+
+- `GenericTrait` - generic value constructor
+- `Nothing` - generic empty object
 
 ### API
 
-#### `Trait.of(value)`
+#### `Trait.empty()`
 
-#### `Trait.create(extensions, value)`
+Return the empty (`Trait.Nothing`) version of this type.
+
+```purescript
+empty :: Nothing
+```
+
+#### `Trait.stringify(trait)`
+
+Return the textual representation of given trait
+
+```purescript
+stringify :: Trait a => a -> String
+```
