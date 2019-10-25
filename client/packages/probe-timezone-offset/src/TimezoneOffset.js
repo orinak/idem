@@ -15,7 +15,7 @@ const getTimezoneOffset = () => new Date().getTimezoneOffset()
 function TimezoneOffset () {
   return Future
     .attempt(getTimezoneOffset)
-    .fold(() => Trait.Nothing, Trait.GenericTrait)
+    .fold(Trait.empty, Trait.GenericTrait)
 }
 
 // expose probe

@@ -27,7 +27,7 @@ function MimeTypes () {
   return Future
     .attempt(getNavigatorMimeTypes)
     .map(parse)
-    .fold(() => Trait.Nothing, Trait.GenericTrait)
+    .fold(Trait.empty, Trait.GenericTrait)
 }
 
 // expose probe

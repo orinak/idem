@@ -15,7 +15,7 @@ const getUserAgent = () => window.navigator.userAgent
 function UserAgent () {
   return Future
     .attempt(getUserAgent)
-    .fold(() => Trait.Nothing, Trait.GenericTrait)
+    .fold(Trait.empty, Trait.GenericTrait)
 }
 
 // expose probe

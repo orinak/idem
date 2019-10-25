@@ -40,7 +40,7 @@ function SystemFonts (opts = {}) {
   return Future
     .node(detect)
     .map(parse)
-    .fold(() => Trait.Nothing, Trait.GenericTrait)
+    .fold(Trait.empty, Trait.GenericTrait)
 }
 
 // expose probe

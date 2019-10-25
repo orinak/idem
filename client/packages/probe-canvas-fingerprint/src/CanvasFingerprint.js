@@ -15,7 +15,7 @@ const getFingerprint = require('./fingerprint')
 function CanvasFingerprint (options) {
   return Future
     .encase(getFingerprint, options)
-    .fold(() => Trait.Nothing, Trait.GenericTrait)
+    .fold(Trait.empty, Trait.GenericTrait)
 }
 
 // expose probe
