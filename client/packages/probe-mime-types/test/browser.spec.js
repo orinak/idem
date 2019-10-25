@@ -72,17 +72,13 @@ test('predefined result (serialized)', async t => {
     const Probe = window.IdemTestLibrary
 
     return Probe()
-      .map(res => ({
-        str: res.toString(),
-        val: res.toJSON()
-      }))
+      .map(String)
       .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(typeof res.str, 'string')
-      t.true(Array.isArray(res.val))
+      t.is(res, 'Trait.GenericTrait(["application/pdf","application/x-nacl"])')
     })
 })

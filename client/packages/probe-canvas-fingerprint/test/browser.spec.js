@@ -30,15 +30,15 @@ test('predefined result (serialized)', async t => {
     const Probe = window.IdemTestLibrary
 
     return Probe()
-      .map(x => x['@@show']())
+      .map(String)
       .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.regex(res, /^Just (.*)/)
-      t.regex(res, /data:image\/png;base64,(.*)/)
+      const re = /^Trait.GenericTrait\("data:image\/png;base64,(.*)"\)$/
+      t.regex(res, re)
     })
 
   await browser.close()
@@ -59,14 +59,14 @@ test('with disabled reading from canvas', async t => {
     const Probe = window.IdemTestLibrary
 
     return Probe()
-      .map(x => x['@@show']())
+      .map(String)
       .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(res, 'Nothing')
+      t.is(res, 'Trait.Nothing')
     })
 
   // dispose

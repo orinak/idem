@@ -73,17 +73,13 @@ test('predefined result', async t => {
     const Probe = window.IdemTestLibrary
 
     return Probe()
-      .map(res => ({
-        str: res.toString(),
-        val: res.toJSON()
-      }))
+      .map(String)
       .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(typeof res.str, 'string')
-      t.true(Array.isArray(res.val))
+      t.regex(res, /Trait.GenericTrait\(\[.*\]\)/)
     })
 })

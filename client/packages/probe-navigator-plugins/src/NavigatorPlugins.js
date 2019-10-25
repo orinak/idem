@@ -1,6 +1,6 @@
 const Future = require('fluture')
 
-const Trait = require('./Trait')
+const Trait = require('@pouk/idem-type-trait')
 
 // helpers
 
@@ -27,7 +27,7 @@ function NavigatorPlugins () {
   return Future
     .attempt(getNavigatorPlugins)
     .map(parse)
-    .map(Trait.of)
+    .fold(() => Trait.Nothing, Trait.GenericTrait)
 }
 
 // expose probe

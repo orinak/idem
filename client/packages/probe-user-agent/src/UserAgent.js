@@ -9,13 +9,13 @@ const getUserAgent = () => window.navigator.userAgent
 /**
  * Probe to get User Agent
  *
- * @returns {Future<Error|Trait>}
+ * @returns {Future<Trait>}
  */
 
 function UserAgent () {
   return Future
     .attempt(getUserAgent)
-    .map(Trait.of)
+    .fold(() => Trait.Nothing, Trait.GenericTrait)
 }
 
 // expose probe

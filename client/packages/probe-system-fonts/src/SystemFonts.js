@@ -14,7 +14,7 @@ const FONTS = require('./fonts.json')
 /**
  * Probe to get (incomplete) list of available fonts
  *
- * @returns {Future<Error|Trait>}
+ * @returns {Future<Trait>}
  */
 
 function SystemFonts (opts = {}) {
@@ -40,7 +40,7 @@ function SystemFonts (opts = {}) {
   return Future
     .node(detect)
     .map(parse)
-    .map(Trait.of)
+    .fold(() => Trait.Nothing, Trait.GenericTrait)
 }
 
 // expose probe

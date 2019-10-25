@@ -54,17 +54,13 @@ test('result', async t => {
     const Probe = window.IdemTestLibrary
 
     return Probe()
-      .map(res => ({
-        str: res.toString(),
-        val: res.toJSON()
-      }))
+      .map(String)
       .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(typeof res.str, 'string')
-      t.is(typeof res.val, 'number')
+      t.regex(res, /Trait.GenericTrait\(-?\d+\)/)
     })
 })

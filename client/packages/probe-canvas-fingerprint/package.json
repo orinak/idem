@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@pouk/idem-type-trait": "^0.1.0",
-    "fluture": "^11.0.3",
-    "sanctuary-maybe": "^1.2.0"
+    "fluture": "^11.0.3"
   }
 }
