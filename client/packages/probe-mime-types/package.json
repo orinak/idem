@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-probe-mime-types",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Probe for supported MIME types",
   "keywords": [
     "idem",
@@ -40,7 +40,7 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
-    "@pouk/idem-type-trait": "^0.1.0",
+    "@pouk/idem-type-trait": "^0.1.3",
     "fluture": "^11.0.3"
   }
 }

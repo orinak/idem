@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-runner",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Probe runner",
   "keywords": [
     "idem",
@@ -36,7 +36,7 @@
     "nyc": "^14.1.1"
   },
   "dependencies": {
-    "@pouk/idem-type-trait": "*",
+    "@pouk/idem-type-trait": "^0.1.3",
     "fluture": "^11.0.3",
     "ramda": "^0.26.1",
     "sanctuary-pair": "^1.2.0"

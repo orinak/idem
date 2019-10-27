@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/pouk/idem/compare/v0.1.2...v0.1.3) (2019-10-27)
+
+**Note:** Version bump only for package @pouk/idem-client-probes
+
+
+
+
+
 ## [0.1.2](https://github.com/pouk/idem/compare/v0.1.1...v0.1.2) (2019-10-21)
 
 

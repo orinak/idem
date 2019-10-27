@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-type-digest",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Type class for hash values",
   "keywords": [
     "idem",
@@ -27,7 +27,7 @@
     "url": "https://github.com/pouk/idem/issues"
   },
   "devDependencies": {
-    "@pouk/idem-type-trait": "*",
+    "@pouk/idem-type-trait": "^0.1.3",
     "ava": "^2.4.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",

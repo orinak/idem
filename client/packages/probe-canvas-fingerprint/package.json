@@ -1,6 +1,6 @@
 {
   "name": "@pouk/idem-client-probe-canvas-fingerprint",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Probe for canvas fingerprint",
   "keywords": [
     "idem",
@@ -40,8 +40,8 @@
     "puppeteer": "^1.20.0"
   },
   "dependencies": {
-    "@pouk/idem-client-runner": "*",
-    "@pouk/idem-type-trait": "^0.1.0",
+    "@pouk/idem-client-runner": "^0.1.3",
+    "@pouk/idem-type-trait": "^0.1.3",
     "fluture": "^11.0.3"
   }
 }
