@@ -41,10 +41,17 @@ test('initial', async t => {
   const { host, page } = t.context
 
   const getFromPage = () => {
-    const { Agent } = window.IdemTestLibrary
+    const { detect } = window.IdemTestLibrary
 
-    return Agent()
-      .detect()
+    const format = res => {
+      return {
+        id: res.id.toString(),
+        data: res.data
+      }
+    }
+
+    return detect()
+      .map(format)
       .promise()
   }
 
