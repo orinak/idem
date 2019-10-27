@@ -1,12 +1,14 @@
 {
-  "name": "@pouk/idem-client-agent",
-  "version": "0.1.2",
-  "description": "Agent",
+  "name": "@pouk/idem-type-digest",
+  "version": "0.1.0",
+  "description": "Type class for hash values",
   "keywords": [
     "idem",
-    "client"
+    "type",
+    "digest",
+    "hash"
   ],
-  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/agent#readme",
+  "homepage": "https://github.com/pouk/idem/tree/master/common/type-digest#readme",
   "license": "MIT",
   "main": "index.js",
   "repository": {
@@ -25,8 +27,7 @@
     "url": "https://github.com/pouk/idem/issues"
   },
   "devDependencies": {
-    "@pouk/idem-config-ava-base": "^0.1.0",
-    "@pouk/idem-config-webpack-test": "^0.1.0",
+    "@pouk/idem-type-trait": "*",
     "ava": "^2.4.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
@@ -35,12 +36,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "lint-staged": "^9.4.2",
-    "nyc": "^14.1.1",
-    "puppeteer": "^1.20.0"
+    "nyc": "^14.1.1"
   },
   "dependencies": {
-    "@pouk/idem-client-probes": "^0.1.2",
-    "@pouk/idem-client-runner": "*",
-    "@pouk/idem-type-digest": "*"
+    "@pouk/idem-util-murmurhash3": "*",
+    "daggy": "^1.4.0",
+    "json-stringify-deterministic": "^1.0.1",
+    "sort-keys-recursive": "^2.0.1"
   }
 }

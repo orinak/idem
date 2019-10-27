@@ -56,8 +56,11 @@ test('result', async t => {
     const Agent = window.IdemTestLibrary
     const agent = new Agent()
 
+    const format = ({ id, data }) => ({ id: id.toString(), data })
+
     return agent
       .detect()
+      .map(format)
       .promise()
   }
 

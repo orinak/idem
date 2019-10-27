@@ -2,7 +2,7 @@ const Probes = require('@pouk/idem-client-probes')
 
 const runner = require('@pouk/idem-client-runner')
 
-const { traitsToHash } = require('./helpers')
+const { MurmurHash3 } = require('@pouk/idem-type-digest')
 
 // main
 
@@ -23,7 +23,7 @@ Agent.prototype.detect = function () {
   const { config } = this
 
   const format = data => ({
-    id: traitsToHash(data),
+    id: MurmurHash3.fromObject(data),
     data
   })
 
