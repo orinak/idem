@@ -52,39 +52,16 @@ test('result', async t => {
   await page.goto(host)
 
   const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
+    const Probe = window.IdemTestLibrary
 
-    return probe()
+    return Probe()
+      .map(String)
+      .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.is(res.key, 'UserAgent')
-      t.is(res.value, USER_AGENT)
-    })
-})
-
-test('result:serialized', async t => {
-  const { host, page } = t.context
-
-  const USER_AGENT = `Mozilla/5.0 Test ${Date.now()}`
-
-  await page.setUserAgent(USER_AGENT)
-  await page.goto(host)
-
-  const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
-
-    return probe()
-      .then(String)
-  }
-
-  await page
-    .evaluate(examine)
-    .then(res => {
-      t.is(res, `(UserAgent: ${USER_AGENT})`)
+      t.is(res, `Trait.GenericTrait("${USER_AGENT}")`)
     })
 })

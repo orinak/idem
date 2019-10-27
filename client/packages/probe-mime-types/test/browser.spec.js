@@ -69,15 +69,16 @@ test('predefined result (serialized)', async t => {
   }, MIME_TYPES)
 
   const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
+    const Probe = window.IdemTestLibrary
 
-    return probe().then(String)
+    return Probe()
+      .map(String)
+      .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.regex(res, /(MimeTypes: (.*))/)
+      t.is(res, 'Trait.GenericTrait(["application/pdf","application/x-nacl"])')
     })
 })

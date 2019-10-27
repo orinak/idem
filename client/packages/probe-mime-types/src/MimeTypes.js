@@ -1,10 +1,10 @@
+const Future = require('fluture')
+
 const Trait = require('@pouk/idem-type-trait')
 
-//
-
-const NAME = 'MimeTypes'
-
 // helpers
+
+const getNavigatorMimeTypes = () => window.navigator.mimeTypes
 
 const parse = mimeTypeArray => {
   const it = (acc, mimeType) => {
@@ -17,31 +17,19 @@ const parse = mimeTypeArray => {
     .reduce(it, [])
 }
 
-const serialize = plugins => {
-  return plugins.join(', ')
-}
-
-const traitFrom = value => Trait(NAME, value, serialize)
-
 /**
- * Factory for probe to get (incomplete) list of supported MIME Types
+ * Probe to get (incomplete) list of supported MIME Types
  *
- * @returns {Function}
+ * @returns {Future<Error|Trait>}
  */
 
-const factory = () => {
-  function MimeTypes () {
-    const { navigator } = window
-
-    return Promise
-      .resolve(navigator.mimeTypes)
-      .then(parse)
-      .then(traitFrom)
-  }
-
-  return MimeTypes
+function MimeTypes () {
+  return Future
+    .attempt(getNavigatorMimeTypes)
+    .map(parse)
+    .map(Trait.GenericTrait)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = MimeTypes

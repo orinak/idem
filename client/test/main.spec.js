@@ -41,8 +41,18 @@ test('initial', async t => {
   const { host, page } = t.context
 
   const getFromPage = () => {
-    const { Agent } = window.IdemTestLibrary
-    return Agent().detect()
+    const { detect } = window.IdemTestLibrary
+
+    const format = res => {
+      return {
+        id: res.id.toString(),
+        data: res.data
+      }
+    }
+
+    return detect()
+      .map(format)
+      .promise()
   }
 
   await page.goto(host)
@@ -50,7 +60,6 @@ test('initial', async t => {
   const { id, data } = await page.evaluate(getFromPage)
 
   //
-
   t.is(typeof id, 'string')
 
   t.not(data.UserAgent, undefined)

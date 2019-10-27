@@ -1,10 +1,9 @@
+const Future = require('fluture')
+
+// TODO: implement locally
 const FontDetector = require('font-detect')
 
 const Trait = require('@pouk/idem-type-trait')
-
-// settings
-
-const NAME = 'SystemFonts'
 
 /**
  * incomplete list of popular fonts
@@ -12,17 +11,13 @@ const NAME = 'SystemFonts'
 
 const FONTS = require('./fonts.json')
 
-// helpers
-
-const traitFrom = Trait.create(NAME)
-
 /**
- * Factory for probe to get (incomplete) list of available fonts
+ * Probe to get (incomplete) list of available fonts
  *
- * @returns {Function}
+ * @returns {Future<Error|Trait>}
  */
 
-const factory = (opts = {}) => {
+function SystemFonts (opts = {}) {
   const { fonts = FONTS } = opts
 
   const parse = tbl => {
@@ -37,30 +32,17 @@ const factory = (opts = {}) => {
     return list
   }
 
-  function SystemFonts () {
+  const detect = done => {
     const detector = new FontDetector()
-
-    const detect = (resolve, reject) => {
-      const callback = (err, res) =>
-        err
-          ? reject(err)
-          : resolve(res)
-
-      detector.detect(fonts, callback)
-    }
-
-    return new Promise(detect)
-      .then(parse)
-      .then(traitFrom)
+    return detector.detect(fonts, done)
   }
 
-  return SystemFonts
+  return Future
+    .node(detect)
+    .map(parse)
+    .map(Trait.GenericTrait)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
-
-// expose base font names
-
-module.exports.fonts = FONTS
+module.exports = SystemFonts

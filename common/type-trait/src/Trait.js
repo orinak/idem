@@ -1,27 +1,11 @@
-// helpers
+const Daggy = require('daggy')
 
-const toString = value => value.toString()
+// variants
 
-// constructor
-
-function Trait (key, value, serialize = toString) {
-  if (!(this instanceof Trait)) {
-    return new Trait(key, value, serialize)
-  }
-
-  this.key = key
-  this.value = value
-  this.serialize = serialize
-
-  return this
-}
-
-// prototype methods
-
-Trait.prototype.toString = function () {
-  const { key, value, serialize } = this
-  return `(${key}: ${serialize(value)})`
-}
+const Trait = Daggy.taggedSum('Trait', {
+  GenericTrait: ['value'],
+  Nothing: []
+})
 
 // expose constructor
 

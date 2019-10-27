@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@pouk/idem-type-trait": "^0.1.0",
+    "fluture": "^11.0.3",
     "font-detect": "^1.0.0"
   }
 }

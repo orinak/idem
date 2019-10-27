@@ -61,7 +61,7 @@ test.afterEach.always(async t => {
 
 // tests
 
-test('predefined result (serialized)', async t => {
+test('predefined result', async t => {
   const { page } = t.context
 
   await page.evaluate(plugins => {
@@ -70,15 +70,16 @@ test('predefined result (serialized)', async t => {
   }, PLUGINS)
 
   const examine = () => {
-    const factory = window.IdemTestLibrary
-    const probe = factory()
+    const Probe = window.IdemTestLibrary
 
-    return probe().then(String)
+    return Probe()
+      .map(String)
+      .promise()
   }
 
   await page
     .evaluate(examine)
     .then(res => {
-      t.regex(res, /(NavigatorPlugins: (.*))/)
+      t.regex(res, /Trait.GenericTrait\(\[.*\]\)/)
     })
 })

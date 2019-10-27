@@ -1,31 +1,23 @@
+const Future = require('fluture')
+
 const Trait = require('@pouk/idem-type-trait')
-
-//
-
-const NAME = 'TimezoneOffset'
 
 // helpers
 
-const traitFrom = Trait.create(NAME)
+const getTimezoneOffset = () => new Date().getTimezoneOffset()
 
 /**
- * Factory for probe to get timezone offset
+ * Probe to get timezone offset
  *
- * @returns {Function}
+ * @returns {Future<Error|Trait>}
  */
 
-const factory = () => {
-  function TimezoneOffset () {
-    const value = new Date().getTimezoneOffset()
-
-    return Promise
-      .resolve(value)
-      .then(traitFrom)
-  }
-
-  return TimezoneOffset
+function TimezoneOffset () {
+  return Future
+    .attempt(getTimezoneOffset)
+    .map(Trait.GenericTrait)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = TimezoneOffset

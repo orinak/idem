@@ -1,10 +1,10 @@
+const Future = require('fluture')
+
 const Trait = require('@pouk/idem-type-trait')
 
-//
-
-const NAME = 'NavigatorPlugins'
-
 // helpers
+
+const getNavigatorPlugins = () => window.navigator.plugins
 
 const parse = pluginArray => {
   const it = (plugins, pluginItem) => {
@@ -17,35 +17,19 @@ const parse = pluginArray => {
     .reduce(it, [])
 }
 
-const serialize = plugins => {
-  const fromTuple = ({ name, version }) => `${name}@v${version}`
-
-  return plugins
-    .map(fromTuple)
-    .join(', ')
-}
-
-const traitFrom = value => Trait(NAME, value, serialize)
-
 /**
- * Factory for probe to get browser plugins w/ versions
+ * Probe to get browser plugins w/ versions
  *
- * @returns {Function}
+ * @returns {Future<Error|Trait>}
  */
 
-const factory = () => {
-  function NavigatorPlugins () {
-    const { navigator } = window
-
-    return Promise
-      .resolve(navigator.plugins)
-      .then(parse)
-      .then(traitFrom)
-  }
-
-  return NavigatorPlugins
+function NavigatorPlugins () {
+  return Future
+    .attempt(getNavigatorPlugins)
+    .map(parse)
+    .map(Trait.GenericTrait)
 }
 
-// expose factory
+// expose probe
 
-module.exports = factory
+module.exports = NavigatorPlugins

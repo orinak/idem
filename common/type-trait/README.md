@@ -10,24 +10,36 @@
 ```js
 const Trait = require('@pouk/idem-type-trait')
 
-const key = 'SystemFonts'
-const value = [
+const availableFonts = [
   'Courier',
   'DejaVu Sans Mono'
 ]
-const serialize = value => '[' + value.join(', ') + ']'
 
-const trait = new Trait(key, value, serialize)
+const fontsTrait = Trait.GenericTrait(availableFonts)
 
-console.log(String(Trait(key, value)))
-// > "(SystemFonts: Courier,DejaVu Sans Mono)"
-
-console.log(String(Trait(key, value, serialize)))
-// > "(SystemFonts: [Courier, DejaVu Sans Mono])"
+console.log(String(fontsTrait))
+// > Trait.GenericTrait(["Courier","DejaVu Sans Mono"])
 ```
+
+### Variants
+
+- `GenericTrait` - generic value constructor
+- `Nothing` - generic empty object
 
 ### API
 
-#### `Trait.create(key, value)`
+#### `Trait.empty()`
 
-#### `Trait.createCustom(key, value, serialize)`
+Return the empty (`Trait.Nothing`) version of this type.
+
+```purescript
+empty :: Nothing
+```
+
+#### `Trait.stringify(trait)`
+
+Return the textual representation of given trait
+
+```purescript
+stringify :: Trait a => a -> String
+```
