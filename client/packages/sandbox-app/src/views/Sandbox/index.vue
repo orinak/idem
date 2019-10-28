@@ -1,17 +1,15 @@
 <template lang="pug">
   div
-    h3 Sandbox
-    div
-      el-button(@click="run") Run
-    div(v-if="traits")
-      el-card
-        div(slot="header")
-          span Digest
-        sx-digest(:traits="traits")
-      el-card
-        div(slot="header")
-          span TraitList
+    el-row(
+      v-if="traits"
+      :gutter="20"
+    )
+      el-col(:span="10")
+        sx-digest(:digest="digest")
+      el-col(:span="14")
         sx-trait-list(:traits="traits")
+    div.align-center(v-else)
+      el-button(@click="run") Run
 </template>
 
 <script src="./main.js"></script>

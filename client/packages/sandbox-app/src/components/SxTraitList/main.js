@@ -1,13 +1,18 @@
-import SxTraitListItem from '@/components/SxTraitListItem'
+import * as components from './components'
 
 const props = {
   traits: Object
 }
 
+const computed = {
+  variantOf () {
+    return trait => trait['@@tag']
+  }
+}
+
 export default {
   name: 'SxTraitList',
-  components: {
-    SxTraitListItem
-  },
-  props
+  components,
+  props,
+  computed
 }
