@@ -32,17 +32,8 @@ const getDataURL = (canvas) => {
   return canvas.toDataURL()
 }
 
-/**
- *  from Valve/fingerprint2.js
- */
-
-function main (opts = {}) {
+function checkWinding () {
   const canvas = createCanvas()
-
-  // Very simple now, need to make it more complex (geo shapes etc)
-  canvas.width = 2000
-  canvas.height = 200
-  canvas.style.display = 'inline'
 
   const ctx = getContext2D(canvas)
 
@@ -51,7 +42,37 @@ function main (opts = {}) {
   // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/canvas/winding.js
   ctx.rect(0, 0, 10, 10)
   ctx.rect(2, 2, 6, 6)
-  // console.log('canvas winding:' + ((ctx.isPointInPath(5, 5, 'evenodd') === false) ? 'yes' : 'no'))
+
+  return ctx.isPointInPath(5, 5, 'evenodd') === false
+}
+
+/**
+ * Detects if Photoshop style blending modes are available in canvas.
+ *
+ * @returns {Boolean}
+ */
+
+function checkBlending () {
+  const canvas = createCanvas()
+
+  const ctx = getContext2D(canvas)
+
+  try {
+    ctx.globalCompositeOperation = 'screen'
+  } catch (e) {}
+
+  return ctx.globalCompositeOperation === 'screen'
+}
+
+function renderDataURI (opts = {}) {
+  const canvas = createCanvas()
+
+  // Very simple now, need to make it more complex (geo shapes etc)
+  canvas.width = 1000
+  canvas.height = 200
+  canvas.style.display = 'inline'
+
+  const ctx = getContext2D(canvas)
 
   ctx.textBaseline = 'alphabetic'
   ctx.fillStyle = '#f60'
@@ -101,6 +122,24 @@ function main (opts = {}) {
 
   // return base64 string
   return getDataURL(canvas)
+}
+
+/**
+ *  from Valve/fingerprint2.js
+ */
+
+function main (opts = {}) {
+  const dataURI = renderDataURI(opts)
+
+  const features = []
+
+  if (checkBlending()) features.push('blending')
+  if (checkWinding()) features.push('winding')
+
+  return {
+    dataURI,
+    features
+  }
 }
 
 // expose

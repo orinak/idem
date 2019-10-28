@@ -4,6 +4,7 @@ import Trait from '..'
 
 test('@@tags', t => {
   t.is(typeof Trait.GenericTrait, 'function')
+  t.is(typeof Trait.CanvasFingerprint, 'function')
   t.is(typeof Trait.Nothing, 'object')
 })
 
