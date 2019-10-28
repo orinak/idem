@@ -5,6 +5,7 @@ const Daggy = require('daggy')
 const Trait = Daggy.taggedSum('Trait', {
   GenericTrait: ['value'],
   CanvasFingerprint: ['dataURI', 'features'],
+  SystemFonts: ['fontList', 'isComplete'],
   Nothing: []
 })
 

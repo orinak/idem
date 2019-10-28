@@ -61,6 +61,6 @@ test('result', async t => {
   await page
     .evaluate(examine)
     .then(res => {
-      t.regex(res, /Trait.GenericTrait\(\[.*\]\)*/)
+      t.regex(res, /Trait.SystemFonts\(\[.*\],false\)*/)
     })
 })
