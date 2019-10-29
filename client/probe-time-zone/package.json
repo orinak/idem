@@ -1,16 +1,16 @@
 {
-  "name": "@pouk/idem-client-probe-timezone-offset",
+  "name": "@pouk/idem-client-probe-time-zone",
   "version": "0.1.3",
-  "description": "Probe for timezone offset",
+  "description": "Probe for timezone",
   "keywords": [
     "idem",
     "client",
     "probe",
-    "timezone-offset"
+    "timezone"
   ],
-  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probe-timezone-offset#readme",
+  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probe-time-zone#readme",
   "license": "MIT",
-  "main": "src/TimezoneOffset.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pouk/idem.git"

@@ -6,6 +6,7 @@ test('@@tags', t => {
   t.is(typeof Trait.GenericTrait, 'function')
   t.is(typeof Trait.CanvasFingerprint, 'function')
   t.is(typeof Trait.SystemFonts, 'function')
+  t.is(typeof Trait.TimeZone, 'function')
   t.is(typeof Trait.Nothing, 'object')
 })
 
