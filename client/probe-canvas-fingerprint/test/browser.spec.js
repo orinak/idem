@@ -37,8 +37,7 @@ test('predefined result (serialized)', async t => {
   await page
     .evaluate(examine)
     .then(res => {
-      const re = /^Trait.GenericTrait\("data:image\/png;base64,(.*)"\)$/
-      t.regex(res, re)
+      t.regex(res, /^Trait.CanvasFingerprint\(.*\)$/)
     })
 
   await browser.close()
