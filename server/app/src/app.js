@@ -3,6 +3,8 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const bodyparser = require('koa-bodyparser')
 
+const router = require('./router')
+
 /**
  * Create a Koa app instance
  *
@@ -20,9 +22,7 @@ function createApp (opts) {
   app.use(logger())
   app.use(bodyparser())
 
-  app.use(async ctx => {
-    ctx.body = await ctx.db.allDocs()
-  })
+  app.use(router())
 
   return app
 }
