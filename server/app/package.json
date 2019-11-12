@@ -1,0 +1,16 @@
+{
+  "name": "@pouk/idem-server-app",
+  "version": "0.0.0",
+  "description": "Fingerprint records server app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.1"
+  }
+}
