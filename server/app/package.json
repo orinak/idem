@@ -8,6 +8,7 @@
     "url": "git+https://github.com/pouk/idem.git"
   },
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "ava",
     "test:coverage": "nyc ava -v",
     "lint": "eslint --fix index.js src/**/*.js",
@@ -25,6 +26,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "lint-staged": "^9.4.2",
+    "nodemon": "^1.19.4",
     "nyc": "^14.1.1",
     "pouchdb-adapter-memory": "^7.1.1"
   },
