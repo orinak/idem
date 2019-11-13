@@ -1,0 +1,94 @@
+FORMAT: 1A
+
+# pouk/idem
+
+Fingerprint record server.
+
+#### HTTP Methods
+
+- `POST`
+- `GET`
+- `HEAD`
+- `DELETE`
+
+#### HTTP Codes
+
+- `200` - OK status with JSON body
+- `201` - Created
+- `204` - OK status without body
+- `400` - Bad Request
+- `403` - Forbidden
+- `404` - Not found
+- `409` - Conflict
+- `422` - Bad data
+- `500` - Internal Server Error
+- `503` - No database connection 
+
+# Group Fingerprint Record Collection
+
+## Fingerprint Record Collection [/]
+
++ Attributes (array[Fingerprint Record])
+
+### Fetch [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Fingerprint Record Collection)
+
+# Group Fingerprint Record
+
+## Fingerprint Record [/{id}]
+
++ Parameters
+
+    - `id`: `xxx` (string, required)
+
+        Fingerprint hash
+
++ Attributes
+    - `id`: `xxx` (string, required)
+
+    - Include Fingerprint Record Body
+
+### Create fingerprint [POST]
+
++ Request (Fingerprint Record Body)
+   
++ Response 201 
+
+    + Headers
+
+            Location: /xxx
+
+### Read fingerprint record [GET]
+
++ Response 200
+
+    + Attributes (Fingerprint Record)
+
++ Response 404
+
+### Exists [HEAD]
+
+Check if fingerprint record exists
+
++ Response 200
+
++ Response 404
+
+
+# Data Structures
+
+## Fingerprint Record Body
+
+- `SystemFonts` (array, optional)
+
+    List of available system fonts
+    
+- `TimeZone` (object, optional)
+   
+   Timezone information
+        
+
+
