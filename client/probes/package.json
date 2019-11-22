@@ -46,6 +46,7 @@
     "@pouk/idem-client-probe-language-info": "^0.1.3",
     "@pouk/idem-client-probe-hardware-info": "^0.1.3",
     "@pouk/idem-client-probe-touch-support": "^0.1.3",
-    "@pouk/idem-client-probe-webgl-support": "^0.1.3"
+    "@pouk/idem-client-probe-webgl-support": "^0.1.3",
+    "@pouk/idem-client-probe-audio-key": "^0.1.3"
   }
 }
