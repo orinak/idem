@@ -1,0 +1,46 @@
+{
+  "name": "@pouk/idem-client-probe-screen-resolution",
+  "version": "0.1.3",
+  "description": "Probe for screen properties",
+  "keywords": [
+    "idem",
+    "client",
+    "probe"
+  ],
+  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probe-screen-resolution#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pouk/idem.git"
+  },
+  "scripts": {
+    "test": "ava",
+    "test:coverage": "nyc ava -v",
+    "lint": "eslint --fix index.js src/**/*.js",
+    "lint:staged": "lint-staged",
+    "precommit": "npm run lint:staged",
+    "prepush": "npm run lint && npm test"
+  },
+  "bugs": {
+    "url": "https://github.com/pouk/idem/issues"
+  },
+  "devDependencies": {
+    "@pouk/idem-config-ava-base": "^0.1.0",
+    "@pouk/idem-config-webpack-test": "^0.1.0",
+    "ava": "^2.4.0",
+    "eslint": "^6.5.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "lint-staged": "^9.4.2",
+    "nyc": "^14.1.1",
+    "puppeteer": "^1.20.0"
+  },
+  "dependencies": {
+    "@pouk/idem-type-trait": "^0.1.3",
+    "fluture": "^11.0.3"
+  }
+}
