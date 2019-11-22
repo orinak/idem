@@ -7,3 +7,4 @@ module.exports.CanvasFingerprint = require('@pouk/idem-client-probe-canvas-finge
 module.exports.ScreenResolution = require('@pouk/idem-client-probe-screen-resolution')
 module.exports.LanguageInfo = require('@pouk/idem-client-probe-language-info')
 module.exports.HardwareInfo = require('@pouk/idem-client-probe-hardware-info')
+module.exports.TouchSupport = require('@pouk/idem-client-probe-touch-support')
