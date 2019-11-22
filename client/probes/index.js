@@ -5,3 +5,4 @@ module.exports.NavigatorPlugins = require('@pouk/idem-client-probe-navigator-plu
 module.exports.MimeTypes = require('@pouk/idem-client-probe-mime-types')
 module.exports.CanvasFingerprint = require('@pouk/idem-client-probe-canvas-fingerprint')
 module.exports.ScreenResolution = require('@pouk/idem-client-probe-screen-resolution')
+module.exports.LanguageInfo = require('@pouk/idem-client-probe-language-info')
