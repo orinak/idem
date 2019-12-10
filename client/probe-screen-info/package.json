@@ -1,5 +1,5 @@
 {
-  "name": "@pouk/idem-client-probe-screen-resolution",
+  "name": "@pouk/idem-client-probe-screen-info",
   "version": "0.1.3",
   "description": "Probe for screen properties",
   "keywords": [
@@ -7,7 +7,7 @@
     "client",
     "probe"
   ],
-  "homepage": "https://github.com/pouk/idem/tree/master/client/packages/probe-screen-resolution#readme",
+  "homepage": "https://github.com/pouk/idem/tree/master/client/probe-screen-info#readme",
   "license": "MIT",
   "main": "index.js",
   "repository": {
