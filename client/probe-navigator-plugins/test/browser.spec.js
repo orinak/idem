@@ -80,6 +80,7 @@ test('predefined result', async t => {
   await page
     .evaluate(examine)
     .then(res => {
+      console.log(res)
       t.regex(res, /Trait.GenericTrait\(\[.*\]\)/)
     })
 })
