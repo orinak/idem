@@ -25,11 +25,16 @@ const checkSessionStorage = () => {
   }
 }
 
+const checkIndexedDB = () => {
+  return !!window.indexedDB
+}
+
 const getter = () => {
   return {
     cookies: checkCookie(),
     localStorage: checkLocalStorage(),
-    sessionStorage: checkSessionStorage()
+    sessionStorage: checkSessionStorage(),
+    indexedDB: checkIndexedDB()
   }
 }
 
